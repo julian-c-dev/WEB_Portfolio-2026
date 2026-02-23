@@ -253,6 +253,16 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 		padding-top: 6rem; /* 96px — identical to mk-py-24 on <main> */
 	}
 
+	/* WP admin bar pushes document flow down 32px but fixed elements
+	   stay at top:0. Compensate so both sides align. */
+	.admin-bar .side-navigation {
+		top: 32px;
+	}
+	.admin-bar .hero-photo-overlay {
+		top: 32px;
+		height: calc(100vh - 32px);
+	}
+
 	/* Nav + social links: hidden on load, fade in after scroll */
 	.sidebar-reveal {
 		opacity: 0;
