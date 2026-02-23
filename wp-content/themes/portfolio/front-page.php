@@ -13,64 +13,67 @@ $hero_title   = get_field( 'hero_title', 'option' ) ?: 'Full Stack Developer';
 $hero_summary = get_field( 'hero_summary', 'option' ) ?: 'I build accessible, pixel-perfect digital experiences for the web.';
 $social_links = get_field( 'social_links', 'option' ); // Repeater
 $resume_url   = get_field( 'resume_url', 'option' );
+$hero_photo   = get_field( 'hero_photo', 'option' );
+$hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.jpg';
 ?>
 
 <div class="portfolio-wrapper mk-bg-slate-900 mk-min-h-screen">
 
 	<!-- Fixed Side Navigation (Desktop) -->
-	<aside class="side-navigation mk-hidden lg:mk-fixed lg:mk-flex lg:mk-flex-col lg:mk-justify-between lg:mk-top-0 lg:mk-left-0 lg:mk-h-screen lg:mk-w-1/2 lg:mk-p-24 lg:mk-z-10">
+	<aside class="side-navigation mk-hidden lg:mk-fixed lg:mk-flex lg:mk-flex-col lg:mk-top-0 lg:mk-left-0 lg:mk-h-screen lg:mk-w-1/2 lg:mk-p-24 lg:mk-z-10">
 
-		<div class="header-content">
-			<!-- Name & Title -->
-			<div class="mk-mb-16">
-				<h1 class="mk-text-5xl mk-font-bold mk-text-white mk-mb-4 mk-tracking-tight">
-					<?php echo esc_html( $hero_name ); ?>
-				</h1>
-				<h2 class="mk-text-2xl mk-font-semibold mk-text-slate-300 mk-mb-3">
-					<?php echo esc_html( $hero_title ); ?>
-				</h2>
-				<p class="mk-text-lg mk-text-slate-400 mk-max-w-md mk-mb-2">
-					<?php echo esc_html( $hero_summary ); ?>
-				</p>
-			</div>
+		<!-- Hero spacer: collapses on scroll to push text to top -->
+		<div class="hero-spacer-top"></div>
 
-			<!-- Navigation Links -->
-			<nav class="main-nav mk-mb-16" aria-label="In-page jump links">
-				<ul class="mk-space-y-3">
-					<li>
-						<a href="#about"
-						   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-							<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-							<span class="nav-text mk-uppercase mk-tracking-widest">About</span>
-						</a>
-					</li>
-					<li>
-						<a href="#skills"
-						   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-							<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-							<span class="nav-text mk-uppercase mk-tracking-widest">Skills</span>
-						</a>
-					</li>
-					<li>
-						<a href="#experience"
-						   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-							<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-							<span class="nav-text mk-uppercase mk-tracking-widest">Experience</span>
-						</a>
-					</li>
-					<li>
-						<a href="#projects"
-						   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-							<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-							<span class="nav-text mk-uppercase mk-tracking-widest">Projects</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+		<!-- Name, Title & Tagline -->
+		<div class="hero-intro mk-mb-16">
+			<h1 class="mk-text-5xl mk-font-bold mk-text-white mk-mb-4 mk-tracking-tight">
+				<?php echo esc_html( $hero_name ); ?>
+			</h1>
+			<h2 class="mk-text-2xl mk-font-semibold mk-text-slate-300 mk-mb-3">
+				<?php echo esc_html( $hero_title ); ?>
+			</h2>
+			<p class="mk-text-lg mk-text-slate-400 mk-max-w-md mk-mb-2">
+				<?php echo esc_html( $hero_summary ); ?>
+			</p>
 		</div>
 
-		<!-- Social Links -->
-		<div class="social-links mk-flex mk-gap-6">
+		<!-- Navigation Links (hidden until after hero) -->
+		<nav class="main-nav sidebar-reveal mk-mb-16" aria-label="In-page jump links">
+			<ul class="mk-space-y-3">
+				<li>
+					<a href="#about"
+					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
+						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
+						<span class="nav-text mk-uppercase mk-tracking-widest">About</span>
+					</a>
+				</li>
+				<li>
+					<a href="#skills"
+					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
+						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
+						<span class="nav-text mk-uppercase mk-tracking-widest">Skills</span>
+					</a>
+				</li>
+				<li>
+					<a href="#experience"
+					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
+						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
+						<span class="nav-text mk-uppercase mk-tracking-widest">Experience</span>
+					</a>
+				</li>
+				<li>
+					<a href="#projects"
+					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
+						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
+						<span class="nav-text mk-uppercase mk-tracking-widest">Projects</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- Social Links (hidden until after hero, pinned to bottom) -->
+		<div class="social-links sidebar-reveal mk-flex mk-gap-6">
 			<?php
 			// Default social links if ACF not set
 			$default_socials = array(
@@ -136,6 +139,26 @@ $resume_url   = get_field( 'resume_url', 'option' );
 
 	</aside>
 
+	<!-- Hero Photo Overlay (Desktop only, disappears after first scroll) -->
+	<div class="hero-photo-overlay" aria-hidden="true">
+		<?php if ( $hero_photo ) : ?>
+			<img src="<?php echo esc_url( is_array( $hero_photo ) ? $hero_photo['url'] : $hero_photo ); ?>"
+			     alt="<?php echo esc_attr( $hero_name ); ?>"
+			     class="hero-photo-img">
+		<?php elseif ( file_exists( get_template_directory() . '/assets/src/img/hero-photo.jpg' ) ) : ?>
+			<img src="<?php echo esc_url( $hero_photo_local ); ?>"
+			     alt="<?php echo esc_attr( $hero_name ); ?>"
+			     class="hero-photo-img">
+		<?php else : ?>
+			<!-- Placeholder avatar -->
+			<div class="hero-photo-placeholder">
+				<svg viewBox="0 0 24 24" fill="currentColor" style="width:96px;height:96px;color:#475569;">
+					<path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+				</svg>
+			</div>
+		<?php endif; ?>
+	</div>
+
 	<!-- Main Content (Right Side on Desktop) -->
 	<main class="main-content lg:mk-ml-[50%] mk-px-6 md:mk-px-12 lg:mk-px-24 mk-py-24">
 
@@ -152,51 +175,56 @@ $resume_url   = get_field( 'resume_url', 'option' );
 			</p>
 		</div>
 
-		<!-- About Section -->
-		<section id="about" class="section about-section mk-mb-32 mk-scroll-mt-24">
-			<div class="section-header mk-mb-8 lg:mk-hidden">
-				<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">About</h2>
-			</div>
-			<?php get_template_part( 'template-parts/portfolio-v2/about-me' ); ?>
-		</section>
+		<!-- Sections wrapper: hidden until after hero transition (desktop only) -->
+		<div class="main-sections-wrapper">
 
-		<!-- Skills Section -->
-		<section id="skills" class="section skills-section mk-mb-32 mk-scroll-mt-24">
-			<div class="section-header mk-mb-8 lg:mk-hidden">
-				<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Skills</h2>
-			</div>
-			<?php get_template_part( 'template-parts/portfolio-v2/skills' ); ?>
-		</section>
-
-		<!-- Experience Section -->
-		<section id="experience" class="section experience-section mk-mb-32 mk-scroll-mt-24">
-			<div class="section-header mk-mb-8 lg:mk-hidden">
-				<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Experience</h2>
-			</div>
-			<?php get_template_part( 'template-parts/portfolio-v2/experience' ); ?>
-
-			<!-- View Full Resume -->
-			<?php if ( $resume_url ) : ?>
-				<div class="mk-mt-12">
-					<a href="<?php echo esc_url( $resume_url ); ?>"
-					   target="_blank"
-					   class="mk-inline-flex mk-items-center mk-gap-2 mk-text-white mk-font-semibold mk-group">
-						<span class="mk-border-b-2 mk-border-slate-900">View Full Résumé</span>
-						<svg class="mk-w-4 mk-h-4 group-hover:mk-translate-x-1 mk-transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-						</svg>
-					</a>
+			<!-- About Section -->
+			<section id="about" class="section about-section mk-mb-32 mk-scroll-mt-24">
+				<div class="section-header mk-mb-8 lg:mk-hidden">
+					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">About</h2>
 				</div>
-			<?php endif; ?>
-		</section>
+				<?php get_template_part( 'template-parts/portfolio-v2/about-me' ); ?>
+			</section>
 
-		<!-- Projects Section -->
-		<section id="projects" class="section projects-section mk-mb-32 mk-scroll-mt-24">
-			<div class="section-header mk-mb-8 lg:mk-hidden">
-				<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Projects</h2>
-			</div>
-			<?php get_template_part( 'template-parts/portfolio-v2/projects' ); ?>
-		</section>
+			<!-- Skills Section -->
+			<section id="skills" class="section skills-section mk-mb-32 mk-scroll-mt-24">
+				<div class="section-header mk-mb-8 lg:mk-hidden">
+					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Skills</h2>
+				</div>
+				<?php get_template_part( 'template-parts/portfolio-v2/skills' ); ?>
+			</section>
+
+			<!-- Experience Section -->
+			<section id="experience" class="section experience-section mk-mb-32 mk-scroll-mt-24">
+				<div class="section-header mk-mb-8 lg:mk-hidden">
+					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Experience</h2>
+				</div>
+				<?php get_template_part( 'template-parts/portfolio-v2/experience' ); ?>
+
+				<!-- View Full Resume -->
+				<?php if ( $resume_url ) : ?>
+					<div class="mk-mt-12">
+						<a href="<?php echo esc_url( $resume_url ); ?>"
+						   target="_blank"
+						   class="mk-inline-flex mk-items-center mk-gap-2 mk-text-white mk-font-semibold mk-group">
+							<span class="mk-border-b-2 mk-border-slate-900">View Full Résumé</span>
+							<svg class="mk-w-4 mk-h-4 group-hover:mk-translate-x-1 mk-transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+							</svg>
+						</a>
+					</div>
+				<?php endif; ?>
+			</section>
+
+			<!-- Projects Section -->
+			<section id="projects" class="section projects-section mk-mb-32 mk-scroll-mt-24">
+				<div class="section-header mk-mb-8 lg:mk-hidden">
+					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Projects</h2>
+				</div>
+				<?php get_template_part( 'template-parts/portfolio-v2/projects' ); ?>
+			</section>
+
+		</div><!-- /.main-sections-wrapper -->
 
 		<!-- Footer Credits -->
 		<footer class="portfolio-footer mk-mt-32 mk-pt-16 mk-border-t mk-border-slate-200">
@@ -211,10 +239,130 @@ $resume_url   = get_field( 'resume_url', 'option' );
 
 </div>
 
+<style>
+/* ============================================================
+   Hero Intro Feature — Desktop only (lg: 1024px+)
+   All states driven by body.is-scrolled
+   ============================================================ */
+@media (min-width: 1024px) {
+
+	/* Collapsible spacer that centres the intro text vertically on load */
+	.hero-spacer-top {
+		height: calc(50vh - 200px);
+		flex-shrink: 0;
+		transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	body.is-scrolled .hero-spacer-top {
+		height: 0;
+	}
+
+	/* Nav + social links: hidden on load, fade in after scroll */
+	.sidebar-reveal {
+		opacity: 0;
+		transform: translateY(12px);
+		pointer-events: none;
+		transition: opacity 0.4s ease, transform 0.4s ease;
+	}
+	body.is-scrolled .sidebar-reveal {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+		transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s;
+	}
+
+	/* Social links pinned to bottom of flex column */
+	.side-navigation .social-links {
+		margin-top: auto;
+	}
+
+	/* Photo overlay: right half, full-height, fades out after scroll */
+	.hero-photo-overlay {
+		display: flex;
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 50%;
+		height: 100vh;
+		align-items: center;
+		justify-content: center;
+		background-color: #0f172a; /* slate-900 */
+		z-index: 5;
+		transition: opacity 0.6s ease;
+	}
+	body.is-scrolled .hero-photo-overlay {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* Sections wrapper: invisible on load, fades in after scroll */
+	.main-sections-wrapper {
+		opacity: 0;
+		transition: opacity 0.5s ease;
+	}
+	body.is-scrolled .main-sections-wrapper {
+		opacity: 1;
+		transition: opacity 0.5s ease 0.25s;
+	}
+}
+
+/* Photo overlay hidden on mobile (aside is already hidden) */
+@media (max-width: 1023px) {
+	.hero-photo-overlay {
+		display: none;
+	}
+}
+
+/* Photo fills the overlay */
+.hero-photo-img {
+	width: 320px;
+	height: 320px;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+}
+
+/* Placeholder circle */
+.hero-photo-placeholder {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background-color: #1e293b; /* slate-800 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
+
 <!-- Smooth Scroll Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	// Smooth scroll for anchor links
+
+	// ── Hero intro: one-time transition on first scroll ──────────────────
+	const HERO_THRESHOLD = 80;
+	let heroExited = false;
+
+	function updateHeroState() {
+		if (!heroExited && window.scrollY > HERO_THRESHOLD) {
+			heroExited = true;
+			document.body.classList.add('is-scrolled');
+
+			// Snap back to top so About is the first thing seen
+			window.scrollTo(0, 0);
+
+			// Lock scroll for 2 s while transitions play
+			document.documentElement.style.overflow = 'hidden';
+			document.body.style.overflow = 'hidden';
+			setTimeout(function() {
+				document.documentElement.style.overflow = '';
+				document.body.style.overflow = '';
+			}, 2000);
+		}
+	}
+
+	updateHeroState();
+	window.addEventListener('scroll', updateHeroState, { passive: true });
+
+	// ── Smooth scroll for anchor links ───────────────────────────────────
 	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 		anchor.addEventListener('click', function (e) {
 			e.preventDefault();
@@ -228,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	// Active nav indicator on scroll
+	// ── Active nav indicator on scroll ───────────────────────────────────
 	const sections = document.querySelectorAll('section[id]');
 	const navLinks = document.querySelectorAll('.nav-link');
 
