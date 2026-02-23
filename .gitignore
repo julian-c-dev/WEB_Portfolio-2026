@@ -1,0 +1,46 @@
+# WordPress core (no need to track)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+
+# Sensitive config
+wp-config.php
+wp-config-sample.php
+
+# Uploads & generated content
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backup-db/
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+
+# Plugins (install via composer or manually)
+/wp-content/plugins/
+!/wp-content/plugins/.gitkeep
+
+# Must-use plugins — keep if custom
+# /wp-content/mu-plugins/
+
+# Other themes (only track ours)
+/wp-content/themes/twenty*/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build artifacts (keep compiled CSS/JS)
+# /wp-content/themes/portfolio/assets/dist/ — keep this tracked
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local by Flywheel
+*.sql
+*.tar.gz
