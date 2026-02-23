@@ -20,10 +20,7 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 <div class="portfolio-wrapper mk-bg-slate-900 mk-min-h-screen">
 
 	<!-- Fixed Side Navigation (Desktop) -->
-	<aside class="side-navigation mk-hidden lg:mk-fixed lg:mk-flex lg:mk-flex-col lg:mk-top-0 lg:mk-left-0 lg:mk-h-screen lg:mk-w-1/2 lg:mk-p-24 lg:mk-z-10">
-
-		<!-- Hero spacer: collapses on scroll to push text to top -->
-		<div class="hero-spacer-top"></div>
+	<aside class="side-navigation mk-hidden lg:mk-fixed lg:mk-flex lg:mk-flex-col lg:mk-top-0 lg:mk-left-0 lg:mk-h-screen lg:mk-w-1/2 lg:mk-px-24 lg:mk-pb-24 lg:mk-z-10">
 
 		<!-- Name, Title & Tagline -->
 		<div class="hero-intro mk-mb-16">
@@ -246,14 +243,14 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
    ============================================================ */
 @media (min-width: 1024px) {
 
-	/* Collapsible spacer that centres the intro text vertically on load */
-	.hero-spacer-top {
-		height: calc(50vh - 200px);
-		flex-shrink: 0;
-		transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+	/* Animated padding-top centres intro text vertically on load,
+	   then snaps to 6rem (96px) to align with main's mk-py-24 */
+	.side-navigation {
+		padding-top: calc(50vh - 90px);
+		transition: padding-top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 	}
-	body.is-scrolled .hero-spacer-top {
-		height: 0;
+	body.is-scrolled .side-navigation {
+		padding-top: 6rem; /* 96px — identical to mk-py-24 on <main> */
 	}
 
 	/* Nav + social links: hidden on load, fade in after scroll */
