@@ -321,17 +321,18 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 
 /* Photo fills the overlay */
 .hero-photo-img {
-	width: 320px;
-	height: 320px;
+	width: 460px;
+	height: 460px;
 	object-fit: cover;
 	border-radius: 50%;
 	display: block;
+	box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 0 40px 8px rgba(255,255,255,0.08);
 }
 
 /* Placeholder circle */
 .hero-photo-placeholder {
-	width: 320px;
-	height: 320px;
+	width: 460px;
+	height: 460px;
 	border-radius: 50%;
 	background-color: #1e293b; /* slate-800 */
 	display: flex;

@@ -27,7 +27,7 @@ function portfolio_2026_skill_color_family( $skill_name ) {
 	}
 
 	// PHP / WordPress / Database family — violet
-	$php_keywords = array( 'php', 'wordpress', 'gutenberg', 'woocommerce', 'acf', 'ajax', 'composer', 'wpcs', 'custom theme', 'custom post', 'taxonom', 'coding standard', 'sql', 'elementor', 'custom plugins' );
+	$php_keywords = array( 'php', 'wordpress', 'gutenberg', 'woocommerce', 'acf', 'ajax', 'composer', 'wpcs', 'custom theme', 'custom post', 'taxonom', 'coding standard', 'sql', 'elementor', 'custom plugin' );
 	foreach ( $php_keywords as $kw ) {
 		if ( strpos( $name, $kw ) !== false ) return 'violet';
 	}
@@ -56,17 +56,18 @@ function portfolio_2026_skill_classes( $family ) {
 	return $map[ $family ] ?? $map['slate'];
 }
 
+// Color family display order within each category group
+$family_order = array( 'amber', 'orange', 'sky', 'violet', 'teal', 'slate' );
+
 // Predefined category order (matches taxonomy term slugs)
 $category_order = array(
 	'programming-languages',
 	'frameworks-libraries',
 	'wordpress-development',
 	'code-quality',
-	'tooling',
+	'developer-tools-ecosystem',
+	'tooling', // legacy slug fallback
 );
-
-// Color family display order within each category group
-$family_order = array( 'amber', 'orange', 'sky', 'violet', 'teal', 'slate' );
 
 // Get all skill_category terms ordered by our predefined order
 $all_terms = get_terms(
@@ -79,19 +80,16 @@ $all_terms = get_terms(
 // Sort terms by our predefined order
 $terms_ordered = array();
 if ( ! is_wp_error( $all_terms ) && ! empty( $all_terms ) ) {
-	// Index terms by slug for easy lookup
 	$terms_by_slug = array();
 	foreach ( $all_terms as $term ) {
 		$terms_by_slug[ $term->slug ] = $term;
 	}
-	// Add in predefined order first
 	foreach ( $category_order as $slug ) {
 		if ( isset( $terms_by_slug[ $slug ] ) ) {
 			$terms_ordered[] = $terms_by_slug[ $slug ];
 			unset( $terms_by_slug[ $slug ] );
 		}
 	}
-	// Append any extra terms not in our predefined list
 	foreach ( $terms_by_slug as $term ) {
 		$terms_ordered[] = $term;
 	}
@@ -106,7 +104,7 @@ $has_skills = ! empty( $terms_ordered );
 
 		<?php foreach ( $terms_ordered as $term ) :
 
-			// Get skills for this term
+			// Get skills in menu_order — WP controls the display order
 			$skills_query = new WP_Query(
 				array(
 					'post_type'      => 'skill',
@@ -138,16 +136,14 @@ $has_skills = ! empty( $terms_ordered );
 					$skill_groups = array();
 					while ( $skills_query->have_posts() ) {
 						$skills_query->the_post();
-						$family                  = portfolio_2026_skill_color_family( get_the_title() );
+						$family                   = portfolio_2026_skill_color_family( get_the_title() );
 						$skill_groups[ $family ][] = get_the_title();
 					}
 					wp_reset_postdata();
 
 					// Sort each group alphabetically, then render in color order
 					foreach ( $family_order as $family ) {
-						if ( empty( $skill_groups[ $family ] ) ) {
-							continue;
-						}
+						if ( empty( $skill_groups[ $family ] ) ) continue;
 						sort( $skill_groups[ $family ] );
 						$classes = portfolio_2026_skill_classes( $family );
 						foreach ( $skill_groups[ $family ] as $skill_name ) :
@@ -170,11 +166,26 @@ $has_skills = ! empty( $terms_ordered );
 		<!-- Fallback: static skills shown while CPT has no entries -->
 		<?php
 		$static_skills = array(
-			array( 'label' => 'Programming Languages', 'items' => array( 'PHP', 'JavaScript', 'HTML', 'CSS3', 'Sass', 'SQL' ) ),
-			array( 'label' => 'Frameworks & Libraries', 'items' => array( 'React', 'Next.js', 'Tailwind CSS', 'Bootstrap' ) ),
-			array( 'label' => 'WordPress Development', 'items' => array( 'Custom Themes', 'Custom Post Types', 'Taxonomies', 'Gutenberg', 'ACF', 'AJAX', 'WooCommerce' ) ),
-			array( 'label' => 'Code Quality', 'items' => array( 'WordPress Coding Standards', 'ESLint', 'Git Hooks with Husky' ) ),
-			array( 'label' => 'Tooling', 'items' => array( 'Git', 'GitHub', 'Composer', 'Webpack', 'Gulp', 'Expo', 'Astro', 'Figma', 'Asana', 'Jira' ) ),
+			array(
+				'label' => 'Programming Languages',
+				'items' => array( 'PHP', 'JavaScript', 'HTML', 'CSS3', 'Sass', 'SQL' ),
+			),
+			array(
+				'label' => 'Frameworks & Libraries',
+				'items' => array( 'React', 'Tailwind CSS', 'Bootstrap' ),
+			),
+			array(
+				'label' => 'WordPress Development',
+				'items' => array( 'Custom Themes', 'Custom Plugins', 'Custom Post Types', 'Taxonomies', 'Gutenberg', 'ACF', 'AJAX', 'WooCommerce', 'Elementor' ),
+			),
+			array(
+				'label' => 'Code Quality',
+				'items' => array( 'WordPress Coding Standards (WPCS)', 'ESLint', 'Git Hooks (Husky)' ),
+			),
+			array(
+				'label' => 'Developer Tools & Ecosystem',
+				'items' => array( 'Astro', 'Expo', 'Webpack', 'Gulp', 'Composer', 'Git', 'GitHub', 'Postman', 'phpMyAdmin', 'FileZilla', 'Figma', 'Jira', 'Asana' ),
+			),
 		);
 		foreach ( $static_skills as $group ) : ?>
 			<div class="skill-category mk-mb-10">
@@ -188,15 +199,13 @@ $has_skills = ! empty( $terms_ordered );
 					// Collect skills grouped by color family
 					$skill_groups = array();
 					foreach ( $group['items'] as $skill_name ) {
-						$family                  = portfolio_2026_skill_color_family( $skill_name );
+						$family                   = portfolio_2026_skill_color_family( $skill_name );
 						$skill_groups[ $family ][] = $skill_name;
 					}
 
 					// Sort each group alphabetically, then render in color order
 					foreach ( $family_order as $family ) {
-						if ( empty( $skill_groups[ $family ] ) ) {
-							continue;
-						}
+						if ( empty( $skill_groups[ $family ] ) ) continue;
 						sort( $skill_groups[ $family ] );
 						$classes = portfolio_2026_skill_classes( $family );
 						foreach ( $skill_groups[ $family ] as $skill_name ) :
