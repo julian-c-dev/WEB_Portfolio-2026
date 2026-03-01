@@ -109,6 +109,7 @@ module.exports = {
         '5xl': '64rem',
         '6xl': '72rem',
         '7xl': '80rem',
+        '8xl': '86rem',
         'container': '75rem',      // 1200px - Main site container
         'container-lg': '90rem',   // 1440px - Large container
         'container-sm': '60rem',   // 960px - Small container

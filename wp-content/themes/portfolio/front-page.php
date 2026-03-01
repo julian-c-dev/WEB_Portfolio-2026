@@ -8,8 +8,8 @@
 get_header();
 
 // ACF Options
-$hero_name    = get_field( 'hero_name', 'option' ) ?: 'Julian C Dev';
-$hero_title   = get_field( 'hero_title', 'option' ) ?: 'Full Stack Developer';
+$hero_name    = get_field( 'hero_name', 'option' ) ?: 'Julian Cantera';
+$hero_title   = get_field( 'hero_title', 'option' ) ?: 'WordPress & Front-End Developer';
 $hero_summary = get_field( 'hero_summary', 'option' ) ?: 'I build accessible, pixel-perfect digital experiences for the web.';
 $social_links = get_field( 'social_links', 'option' ); // Repeater
 $resume_url   = get_field( 'resume_url', 'option' );
@@ -19,17 +19,17 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 
 <div class="portfolio-wrapper bg-slate-900 min-h-screen">
 
-	<div class="lg:max-w-7xl lg:mx-auto lg:flex">
+	<div class="lg:max-w-8xl lg:mx-auto lg:flex">
 
 	<!-- Side Navigation (Desktop) -->
 	<aside class="side-navigation hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:w-1/2 lg:px-14 lg:pb-24 lg:z-10">
 
 		<!-- Name, Title & Tagline -->
 		<div class="hero-intro mb-16">
-			<h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
+			<h1 class="text-6xl font-bold text-white mb-4 tracking-tight">
 				<?php echo esc_html( $hero_name ); ?>
 			</h1>
-			<h2 class="text-2xl font-semibold text-slate-300 mb-3">
+			<h2 class="text-3xl font-semibold text-slate-300 mb-3">
 				<?php echo esc_html( $hero_title ); ?>
 			</h2>
 			<p class="text-lg text-slate-400 max-w-md mb-2">
@@ -159,7 +159,7 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 	</div>
 
 	<!-- Main Content (Right Side on Desktop) -->
-	<main class="main-content lg:flex-1 px-6 md:px-12 lg:px-14 py-24">
+	<main class="main-content lg:flex-1 px-6 py-24">
 
 		<!-- Mobile Header -->
 		<div class="mobile-header lg:hidden mb-16">
