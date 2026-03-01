@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Plugins (licensed, do not commit)
+plugins/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+*.swp
+*.swo

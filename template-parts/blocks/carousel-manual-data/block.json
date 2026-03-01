@@ -1,0 +1,24 @@
+{
+    "name": "carousel-manual-data",
+    "title": "Carousel: Manual Data",
+    "description": "A block that displays cards as carousel.",
+    "category": "layout",
+    "icon": "slides",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "carousel-manual-data.php"
+    },
+    "supports": {
+        "align": false,
+        "mode": false,
+        "anchor": true
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+            "preview_image_help": true
+            }
+        }
+    }
+}

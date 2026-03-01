@@ -1,0 +1,24 @@
+{
+    "name": "hero",
+    "title": "Block: Hero",
+    "description": "A main Hero block that accepts video and images as background and some text and cta.",
+    "category": "layout",
+    "icon": "align-full-width",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "hero.php"
+    },
+    "supports": {
+        "align": false,
+        "mode": false,
+        "anchor": true
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+            "preview_image_help": true
+            }
+        }
+    }
+}

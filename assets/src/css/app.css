@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==============================
+	CUSTOM STYLES
+	============================== */
+
+@layer base {
+	/* Typography defaults */
+	body {
+		@apply font-sans text-base text-gray-900 antialiased;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-bold leading-tight;
+	}
+
+	h1 { @apply text-4xl md:text-5xl; }
+	h2 { @apply text-3xl md:text-4xl; }
+	h3 { @apply text-2xl md:text-3xl; }
+	h4 { @apply text-xl md:text-2xl; }
+	h5 { @apply text-lg md:text-xl; }
+	h6 { @apply text-base md:text-lg; }
+
+	/* Links */
+	a {
+		@apply transition-colors duration-200;
+	}
+
+	/* Focus styles — remove all outlines/borders globally */
+	*:focus,
+	*:focus-within,
+	*:focus-visible {
+		outline: none !important;
+		outline-offset: 0 !important;
+		box-shadow: none !important;
+		border-color: inherit !important;
+	}
+
+	/* Bold + bigger on keyboard focus only */
+	button:focus-visible,
+	a:focus-visible {
+		font-weight: 700;
+		transform: scale(1.08);
+	}
+}
+
+@layer components {
+	/* Container */
+	.container {
+		@apply max-w-container mx-auto px-4;
+	}
+
+	/* Button Base */
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200;
+	}
+
+	.btn-primary {
+		@apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+	}
+
+	.btn-secondary {
+		@apply btn bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800;
+	}
+
+	.btn-outline {
+		@apply btn border-2 border-brand-600 text-brand-600 hover:bg-brand-50;
+	}
+
+	/* Card Component */
+	.card {
+		@apply bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-200 hover:shadow-lg;
+	}
+
+	.card-header {
+		@apply px-6 py-4 border-b border-gray-200;
+	}
+
+	.card-body {
+		@apply px-6 py-4;
+	}
+
+	.card-footer {
+		@apply px-6 py-4 border-t border-gray-200 bg-gray-50;
+	}
+
+	/* Form Elements */
+	.form-input,
+	.form-textarea,
+	.form-select {
+		@apply w-full px-4 py-2 border border-gray-300 rounded-md transition-colors duration-200;
+		@apply focus:border-brand-500 focus:ring-2 focus:ring-brand-500 focus:ring-opacity-50;
+	}
+
+	.form-label {
+		@apply block text-sm font-medium text-gray-700 mb-2;
+	}
+
+	/* Prose (content) styling */
+	.prose {
+		@apply max-w-prose;
+	}
+
+	.prose h2 {
+		@apply text-3xl mb-4 mt-10 font-bold text-gray-900;
+	}
+
+	.prose h3 {
+		@apply text-2xl mb-4 mt-8 font-bold text-gray-900;
+	}
+
+	.prose h4 {
+		@apply text-xl mb-3 mt-6 font-semibold text-gray-900;
+	}
+
+	.prose p {
+		@apply mb-6 text-base leading-relaxed text-gray-700;
+	}
+
+	.prose ol,
+	.prose ul {
+		@apply mb-6 pl-6;
+	}
+
+	.prose ol li {
+		@apply mb-2 list-decimal;
+	}
+
+	.prose ul li {
+		@apply mb-2 list-disc;
+	}
+
+	.prose a {
+		@apply text-brand-600 underline hover:text-brand-700;
+	}
+
+	.prose img,
+	.prose figure {
+		@apply my-8 mx-auto rounded-lg;
+	}
+
+	.prose blockquote {
+		@apply border-l-4 border-brand-500 pl-4 italic text-gray-700;
+	}
+
+	.prose code {
+		@apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+	}
+
+	.prose pre {
+		@apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto;
+	}
+
+	.prose pre code {
+		@apply bg-transparent p-0;
+	}
+}
+
+@layer utilities {
+	/* Skip link for accessibility */
+	.skip-link {
+		@apply sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-tooltip;
+		@apply focus:bg-brand-600 focus:text-white focus:px-4 focus:py-2;
+	}
+
+	/* Screen reader only */
+	.screen-reader-text {
+		@apply sr-only;
+	}
+
+	/* Smooth scrolling */
+	html {
+		@apply scroll-smooth;
+	}
+}
