@@ -44,3 +44,12 @@ desktop.ini
 # Local by Flywheel
 *.sql
 *.tar.gz
+local-xdebuginfo.php
+.htaccess
+
+# Claude Code
+.claude/
+
+# WordPress index stubs
+/wp-content/index.php
+/wp-content/themes/index.php

@@ -31,11 +31,11 @@ $block_id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'carousel-manual-da
 $class_name = 'carousel-manual-data' . ( ! empty( $block['className'] ) ? ' ' . $block['className'] : '' );
 ?>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?> mk-w-full mk-bg-white mk-py-12 md:mk-py-24 mk-px-4">
-	<div class="mk-relative mk-max-w-container mk-mx-auto mk-px-0 md:mk-px-4">
-		<div class="mk-font-satoshi mk-text-primary-darker">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?> w-full bg-white py-12 md:py-24 px-4">
+	<div class="relative max-w-container mx-auto px-0 md:px-4">
+		<div class="font-satoshi text-primary-darker">
 			<?php if ( $heading ) : ?>
-				<h2 class="mk-text-3xl mk-font-semibold mk-text-primary-darker-title mk-text-center mk-mb-16 <?php echo $is_timeline ? 'mk-pb-12 md:mk-pb-8 mk-mx-auto' : ''; ?>">
+				<h2 class="text-3xl font-semibold text-primary-darker-title text-center mb-16 <?php echo $is_timeline ? 'pb-12 md:pb-8 mx-auto' : ''; ?>">
 					<?php echo esc_html( $heading ); ?>
 				</h2>
 			<?php endif; ?>
@@ -47,30 +47,30 @@ $class_name = 'carousel-manual-data' . ( ! empty( $block['className'] ) ? ' ' . 
 						<?php if ( $cards ) : ?>
 							<?php foreach ( $cards as $card ) : ?>
 								<li class="glide__slide" data-year="<?php echo esc_attr( $card['year'] ); ?>">
-									<div class="slide-content<?php echo ! empty( $card['link'] ) ? ' mk-cursor-pointer' : ''; ?>">
+									<div class="slide-content<?php echo ! empty( $card['link'] ) ? ' cursor-pointer' : ''; ?>">
 										<?php if ( ! empty( $card['link'] ) ) : ?>
 											<a href="<?php echo esc_url( $card['link']['url'] ); ?>" class="w-full h-full block">
 										<?php endif; ?>
 
 										<?php if ( ! empty( $card['image'] ) ) : ?>
-											<img src="<?php echo esc_url( wp_get_attachment_url( $card['image'] ) ); ?>" alt="<?php echo esc_attr( $card['title'] ); ?>" class="mk-w-full mk-rounded-t-lg">
+											<img src="<?php echo esc_url( wp_get_attachment_url( $card['image'] ) ); ?>" alt="<?php echo esc_attr( $card['title'] ); ?>" class="w-full rounded-t-lg">
 										<?php endif; ?>
 
-										<div class="mk-py-4">
+										<div class="py-4">
 											<?php if ( ! empty( $card['upper_text'] ) && ! $is_timeline ) : ?>
-												<p class="mk-text-sm mk-text-primary-light mk-font-satoshi mk-mb-4">
+												<p class="text-sm text-primary-light font-satoshi mb-4">
 													<?php echo esc_html( $card['upper_text'] ); ?>
 												</p>
 											<?php endif; ?>
 
 											<?php if ( ! empty( $card['title'] ) ) : ?>
-												<h3 class="mk-text-2xxl mk-font-semibold mk-font-satoshi mk-text-primary-darker-title mk-mb-4">
+												<h3 class="text-2xxl font-semibold font-satoshi text-primary-darker-title mb-4">
 													<?php echo esc_html( $is_timeline ? $card['year'] . ': ' . $card['title'] : $card['title'] ); ?>
 												</h3>
 											<?php endif; ?>
 
 											<?php if ( ! empty( $card['description'] ) ) : ?>
-												<p class="mk-text-base mk-text-primary-darker mk-font-sans">
+												<p class="text-base text-primary-darker font-sans">
 													<?php echo esc_html( $card['description'] ); ?>
 												</p>
 											<?php endif; ?>
@@ -86,16 +86,16 @@ $class_name = 'carousel-manual-data' . ( ! empty( $block['className'] ) ? ' ' . 
 
 						<!-- Empty card for spacing. -->
 						<li class="glide__slide">
-							<div class="slide-content mk-opacity-0">
-								<div class="mk-w-full mk-h-48"></div>
+							<div class="slide-content opacity-0">
+								<div class="w-full h-48"></div>
 							</div>
 						</li>
 					</ul>
 
 					<?php
 					// Common classes for arrows.
-					$common_classes = 'carousel_glide__arrows' . ( $is_timeline ? ' mk-flex mk-items-center mk-justify-center mk-mb-6' : '' );
-					$arrow_classes  = 'slider-arrow mk-cursor-pointer ' . ( $is_timeline ? 'mk-mx-2' : '' );
+					$common_classes = 'carousel_glide__arrows' . ( $is_timeline ? ' flex items-center justify-center mb-6' : '' );
+					$arrow_classes  = 'slider-arrow cursor-pointer ' . ( $is_timeline ? 'mx-2' : '' );
 					?>
 
 					<div class="<?php echo esc_attr( $common_classes ); ?>" data-glide-el="controls" 
@@ -106,8 +106,8 @@ $class_name = 'carousel-manual-data' . ( ! empty( $block['className'] ) ? ' ' . 
 						</div>
 
 						<?php if ( $is_timeline ) : ?>
-							<div class="mk-flex mk-items-center mk-mx-2">
-								<span id="current-year" class="mk-text-xl mk-font-semibold mk-text-primary-darker-title">
+							<div class="flex items-center mx-2">
+								<span id="current-year" class="text-xl font-semibold text-primary-darker-title">
 								<?php echo esc_html( $first_year ); ?>
 								</span>
 							</div>

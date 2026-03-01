@@ -17,15 +17,15 @@ $experience_query = new WP_Query(
 ?>
 
 <div class="experience-content">
-	<h2 class="mk-text-4xl mk-font-bold mk-mb-12 mk-text-gray-900 mk-text-center">Professional Experience</h2>
+	<h2 class="text-4xl font-bold mb-12 text-gray-900 text-center">Professional Experience</h2>
 
 	<?php if ( $experience_query->have_posts() ) : ?>
 
 		<!-- Vertical Timeline -->
-		<div class="timeline mk-relative mk-max-w-4xl mk-mx-auto">
+		<div class="timeline relative max-w-4xl mx-auto">
 
 			<!-- Timeline Line -->
-			<div class="timeline-line mk-absolute mk-left-1/2 mk-transform -mk-translate-x-1/2 mk-w-1 mk-h-full mk-bg-gradient-to-b mk-from-blue-500 mk-via-blue-400 mk-to-blue-300"></div>
+			<div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300"></div>
 
 			<?php
 			$index = 0;
@@ -47,63 +47,63 @@ $experience_query = new WP_Query(
 				$end_formatted   = $end_date === 'Present' ? 'Present' : ( $end_date ? gmdate( 'M Y', strtotime( $end_date ) ) : 'Present' );
 				?>
 
-				<div class="timeline-item mk-relative mk-mb-16 <?php echo $is_left ? 'mk-pr-1/2' : 'mk-pl-1/2'; ?>">
+				<div class="timeline-item relative mb-16 <?php echo $is_left ? 'pr-1/2' : 'pl-1/2'; ?>">
 
 					<!-- Timeline Dot -->
-					<div class="timeline-dot mk-absolute mk-left-1/2 mk-top-6 mk-transform -mk-translate-x-1/2 mk-w-6 mk-h-6 mk-bg-blue-600 mk-rounded-full mk-border-4 mk-border-white mk-shadow-lg mk-z-10"></div>
+					<div class="timeline-dot absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10"></div>
 
 					<!-- Content Card -->
-					<div class="experience-card mk-bg-white mk-p-6 mk-rounded-xl mk-shadow-lg hover:mk-shadow-xl mk-transition-all mk-duration-300 mk-border-2 mk-border-gray-100 <?php echo $is_left ? 'mk-mr-8 mk-text-right' : 'mk-ml-8'; ?>">
+					<div class="experience-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-100 <?php echo $is_left ? 'mr-8 text-right' : 'ml-8'; ?>">
 
-						<div class="<?php echo $is_left ? 'mk-flex mk-flex-col mk-items-end' : 'mk-flex mk-flex-col mk-items-start'; ?>">
+						<div class="<?php echo $is_left ? 'flex flex-col items-end' : 'flex flex-col items-start'; ?>">
 
 							<!-- Company Logo -->
 							<?php if ( $company_logo ) : ?>
-								<div class="company-logo mk-mb-4">
+								<div class="company-logo mb-4">
 									<img src="<?php echo esc_url( $company_logo['url'] ); ?>"
 										 alt="<?php echo esc_attr( $company_name ); ?>"
-										 class="mk-h-12 mk-object-contain">
+										 class="h-12 object-contain">
 								</div>
 							<?php endif; ?>
 
 							<!-- Job Title -->
-							<h3 class="mk-text-2xl mk-font-bold mk-text-gray-900 mk-mb-2">
+							<h3 class="text-2xl font-bold text-gray-900 mb-2">
 								<?php echo esc_html( $job_title ); ?>
 							</h3>
 
 							<!-- Company Name -->
 							<?php if ( $company_name ) : ?>
-								<p class="mk-text-lg mk-font-semibold mk-text-blue-600 mk-mb-2">
+								<p class="text-lg font-semibold text-blue-600 mb-2">
 									<?php echo esc_html( $company_name ); ?>
 								</p>
 							<?php endif; ?>
 
 							<!-- Date Range -->
-							<p class="mk-text-sm mk-font-medium mk-text-gray-500 mk-mb-1">
+							<p class="text-sm font-medium text-gray-500 mb-1">
 								📅 <?php echo esc_html( $start_formatted ); ?> - <?php echo esc_html( $end_formatted ); ?>
 							</p>
 
 							<!-- Location -->
 							<?php if ( $location ) : ?>
-								<p class="mk-text-sm mk-text-gray-500 mk-mb-4">
+								<p class="text-sm text-gray-500 mb-4">
 									📍 <?php echo esc_html( $location ); ?>
 								</p>
 							<?php endif; ?>
 
 							<!-- Description -->
-							<div class="experience-description mk-text-gray-700 mk-mb-4 <?php echo $is_left ? 'mk-text-right' : 'mk-text-left'; ?>">
+							<div class="experience-description text-gray-700 mb-4 <?php echo $is_left ? 'text-right' : 'text-left'; ?>">
 								<?php the_content(); ?>
 							</div>
 
 							<!-- Technologies/Skills Used -->
 							<?php if ( $technologies ) : ?>
-								<div class="technologies mk-flex mk-flex-wrap mk-gap-2 <?php echo $is_left ? 'mk-justify-end' : 'mk-justify-start'; ?>">
+								<div class="technologies flex flex-wrap gap-2 <?php echo $is_left ? 'justify-end' : 'justify-start'; ?>">
 									<?php
 									$tech_array = is_array( $technologies ) ? $technologies : explode( ',', $technologies );
 									foreach ( $tech_array as $tech ) :
 										$tech = trim( $tech );
 										?>
-										<span class="mk-text-xs mk-font-semibold mk-px-3 mk-py-1 mk-bg-gray-100 mk-text-gray-700 mk-rounded-full">
+										<span class="text-xs font-semibold px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
 											<?php echo esc_html( $tech ); ?>
 										</span>
 									<?php endforeach; ?>
@@ -122,10 +122,10 @@ $experience_query = new WP_Query(
 
 	<?php else : ?>
 		<!-- No Experience Found -->
-		<div class="mk-bg-blue-50 mk-border mk-border-blue-200 mk-rounded-lg mk-p-8 mk-text-center">
-			<p class="mk-text-gray-700 mk-mb-4">No experience added yet.</p>
+		<div class="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
+			<p class="text-gray-700 mb-4">No experience added yet.</p>
 			<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=experience' ) ); ?>"
-			   class="mk-inline-block mk-bg-blue-600 mk-text-white mk-px-6 mk-py-2 mk-rounded-lg hover:mk-bg-blue-700">
+			   class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
 				Add Your First Experience
 			</a>
 		</div>
@@ -150,12 +150,12 @@ $experience_query = new WP_Query(
 		margin-left: 0 !important;
 		margin-right: 0 !important;
 	}
-	.experience-card .mk-text-right,
-	.experience-card .mk-flex-col.mk-items-end {
+	.experience-card .text-right,
+	.experience-card .flex-col.items-end {
 		text-align: left !important;
 		align-items: flex-start !important;
 	}
-	.experience-card .mk-justify-end {
+	.experience-card .justify-end {
 		justify-content: flex-start !important;
 	}
 }

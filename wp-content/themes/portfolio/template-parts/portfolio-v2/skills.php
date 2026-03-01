@@ -5,57 +5,6 @@
  * @package portfolio_2026
  */
 
-/**
- * Maps a skill name to a color family based on its technology relationship.
- */
-function portfolio_2026_skill_color_family( $skill_name ) {
-	$name = strtolower( $skill_name );
-
-	// JS family — amber
-	$js_keywords = array( 'javascript', 'react', 'next', 'eslint', 'webpack', 'gulp', 'expo', 'astro', 'node', 'typescript' );
-	foreach ( $js_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'amber';
-	}
-
-	// HTML — orange
-	if ( strpos( $name, 'html' ) !== false ) return 'orange';
-
-	// CSS family — sky (includes Sass, Tailwind, Bootstrap)
-	$css_keywords = array( 'css', 'sass', 'scss', 'tailwind', 'bootstrap' );
-	foreach ( $css_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'sky';
-	}
-
-	// PHP / WordPress / Database family — violet
-	$php_keywords = array( 'php', 'wordpress', 'gutenberg', 'woocommerce', 'acf', 'ajax', 'composer', 'wpcs', 'custom theme', 'custom post', 'taxonom', 'coding standard', 'sql', 'elementor', 'custom plugin' );
-	foreach ( $php_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'violet';
-	}
-
-	// Git family — teal (includes Husky since it's a Git hooks tool)
-	$git_keywords = array( 'git', 'husky', 'hook' );
-	foreach ( $git_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'teal';
-	}
-
-	return 'slate';
-}
-
-/**
- * Returns Tailwind classes for a given color family.
- */
-function portfolio_2026_skill_classes( $family ) {
-	$map = array(
-		'amber'  => 'mk-bg-amber-400/10 mk-text-amber-300 mk-ring-amber-400/20',
-		'orange' => 'mk-bg-orange-400/10 mk-text-orange-300 mk-ring-orange-400/20',
-		'sky'    => 'mk-bg-sky-400/10 mk-text-sky-300 mk-ring-sky-400/20',
-		'violet' => 'mk-bg-violet-400/10 mk-text-violet-300 mk-ring-violet-400/20',
-		'teal'   => 'mk-bg-teal-400/10 mk-text-teal-300 mk-ring-teal-400/20',
-		'slate'  => 'mk-bg-slate-400/10 mk-text-slate-300 mk-ring-slate-400/20',
-	);
-	return $map[ $family ] ?? $map['slate'];
-}
-
 // Color family display order within each category group
 $family_order = array( 'amber', 'orange', 'sky', 'violet', 'teal', 'slate' );
 
@@ -124,13 +73,13 @@ $has_skills = ! empty( $terms_ordered );
 			if ( ! $skills_query->have_posts() ) continue;
 			?>
 
-			<div class="skill-category mk-mb-10">
+			<div class="skill-category mb-10">
 
-				<h3 class="mk-text-xs mk-font-bold mk-text-slate-500 mk-uppercase mk-tracking-widest mk-mb-3">
+				<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
 					<?php echo esc_html( $term->name ); ?>
 				</h3>
 
-				<div class="mk-flex mk-flex-wrap mk-gap-2">
+				<div class="flex flex-wrap gap-2">
 					<?php
 					// Collect skills grouped by color family
 					$skill_groups = array();
@@ -148,7 +97,7 @@ $has_skills = ! empty( $terms_ordered );
 						$classes = portfolio_2026_skill_classes( $family );
 						foreach ( $skill_groups[ $family ] as $skill_name ) :
 							?>
-							<span class="skill-tag mk-inline-flex mk-items-center mk-gap-1.5 mk-rounded-full mk-px-3 mk-py-1 mk-text-xs mk-font-medium mk-ring-1 mk-ring-inset <?php echo esc_attr( $classes ); ?>">
+							<span class="skill-tag inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset <?php echo esc_attr( $classes ); ?>">
 								<?php echo esc_html( $skill_name ); ?>
 							</span>
 							<?php
@@ -188,13 +137,13 @@ $has_skills = ! empty( $terms_ordered );
 			),
 		);
 		foreach ( $static_skills as $group ) : ?>
-			<div class="skill-category mk-mb-10">
+			<div class="skill-category mb-10">
 
-				<h3 class="mk-text-xs mk-font-bold mk-text-slate-500 mk-uppercase mk-tracking-widest mk-mb-3">
+				<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
 					<?php echo esc_html( $group['label'] ); ?>
 				</h3>
 
-				<div class="mk-flex mk-flex-wrap mk-gap-2">
+				<div class="flex flex-wrap gap-2">
 					<?php
 					// Collect skills grouped by color family
 					$skill_groups = array();
@@ -210,7 +159,7 @@ $has_skills = ! empty( $terms_ordered );
 						$classes = portfolio_2026_skill_classes( $family );
 						foreach ( $skill_groups[ $family ] as $skill_name ) :
 							?>
-							<span class="skill-tag mk-inline-flex mk-items-center mk-gap-1.5 mk-rounded-full mk-px-3 mk-py-1 mk-text-xs mk-font-medium mk-ring-1 mk-ring-inset <?php echo esc_attr( $classes ); ?>">
+							<span class="skill-tag inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset <?php echo esc_attr( $classes ); ?>">
 								<?php echo esc_html( $skill_name ); ?>
 							</span>
 							<?php

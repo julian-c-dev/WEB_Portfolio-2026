@@ -17,60 +17,62 @@ $hero_photo   = get_field( 'hero_photo', 'option' );
 $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.jpg';
 ?>
 
-<div class="portfolio-wrapper mk-bg-slate-900 mk-min-h-screen">
+<div class="portfolio-wrapper bg-slate-900 min-h-screen">
 
-	<!-- Fixed Side Navigation (Desktop) -->
-	<aside class="side-navigation mk-hidden lg:mk-fixed lg:mk-flex lg:mk-flex-col lg:mk-top-0 lg:mk-left-0 lg:mk-h-screen lg:mk-w-1/2 lg:mk-px-24 lg:mk-pb-24 lg:mk-z-10">
+	<div class="lg:max-w-7xl lg:mx-auto lg:flex">
+
+	<!-- Side Navigation (Desktop) -->
+	<aside class="side-navigation hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:w-1/2 lg:px-14 lg:pb-24 lg:z-10">
 
 		<!-- Name, Title & Tagline -->
-		<div class="hero-intro mk-mb-16">
-			<h1 class="mk-text-5xl mk-font-bold mk-text-white mk-mb-4 mk-tracking-tight">
+		<div class="hero-intro mb-16">
+			<h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
 				<?php echo esc_html( $hero_name ); ?>
 			</h1>
-			<h2 class="mk-text-2xl mk-font-semibold mk-text-slate-300 mk-mb-3">
+			<h2 class="text-2xl font-semibold text-slate-300 mb-3">
 				<?php echo esc_html( $hero_title ); ?>
 			</h2>
-			<p class="mk-text-lg mk-text-slate-400 mk-max-w-md mk-mb-2">
+			<p class="text-lg text-slate-400 max-w-md mb-2">
 				<?php echo esc_html( $hero_summary ); ?>
 			</p>
 		</div>
 
 		<!-- Navigation Links (hidden until after hero) -->
-		<nav class="main-nav sidebar-reveal mk-mb-16" aria-label="In-page jump links">
-			<ul class="mk-space-y-3">
+		<nav class="main-nav sidebar-reveal mb-16" aria-label="In-page jump links">
+			<ul class="space-y-3">
 				<li>
 					<a href="#about"
-					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-						<span class="nav-text mk-uppercase mk-tracking-widest">About</span>
+					   class="nav-link group flex items-center text-sm font-medium text-slate-400 hover:text-white transition-all focus:outline-none">
+						<span class="nav-indicator w-8 h-px bg-slate-400 group-hover:w-16 group-hover:bg-white transition-all mr-4"></span>
+						<span class="nav-text uppercase tracking-widest">About</span>
 					</a>
 				</li>
 				<li>
 					<a href="#skills"
-					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-						<span class="nav-text mk-uppercase mk-tracking-widest">Skills</span>
+					   class="nav-link group flex items-center text-sm font-medium text-slate-400 hover:text-white transition-all focus:outline-none">
+						<span class="nav-indicator w-8 h-px bg-slate-400 group-hover:w-16 group-hover:bg-white transition-all mr-4"></span>
+						<span class="nav-text uppercase tracking-widest">Skills</span>
 					</a>
 				</li>
 				<li>
 					<a href="#experience"
-					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-						<span class="nav-text mk-uppercase mk-tracking-widest">Experience</span>
+					   class="nav-link group flex items-center text-sm font-medium text-slate-400 hover:text-white transition-all focus:outline-none">
+						<span class="nav-indicator w-8 h-px bg-slate-400 group-hover:w-16 group-hover:bg-white transition-all mr-4"></span>
+						<span class="nav-text uppercase tracking-widest">Experience</span>
 					</a>
 				</li>
 				<li>
 					<a href="#projects"
-					   class="nav-link mk-group mk-flex mk-items-center mk-text-sm mk-font-medium mk-text-slate-400 hover:mk-text-white mk-transition-all focus:mk-outline-none">
-						<span class="nav-indicator mk-w-8 mk-h-px mk-bg-slate-400 group-hover:mk-w-16 group-hover:mk-bg-white mk-transition-all mk-mr-4"></span>
-						<span class="nav-text mk-uppercase mk-tracking-widest">Projects</span>
+					   class="nav-link group flex items-center text-sm font-medium text-slate-400 hover:text-white transition-all focus:outline-none">
+						<span class="nav-indicator w-8 h-px bg-slate-400 group-hover:w-16 group-hover:bg-white transition-all mr-4"></span>
+						<span class="nav-text uppercase tracking-widest">Projects</span>
 					</a>
 				</li>
 			</ul>
 		</nav>
 
 		<!-- Social Links (hidden until after hero, pinned to bottom) -->
-		<div class="social-links sidebar-reveal mk-flex mk-gap-6">
+		<div class="social-links sidebar-reveal flex gap-6">
 			<?php
 			// Default social links if ACF not set
 			$default_socials = array(
@@ -100,22 +102,22 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 				<a href="<?php echo esc_url( $url ); ?>"
 				   target="_blank"
 				   rel="noopener noreferrer"
-				   class="mk-text-slate-400 hover:mk-text-white mk-transition-colors"
+				   class="text-slate-400 hover:text-white transition-colors"
 				   aria-label="<?php echo esc_attr( $platform ); ?>">
 						<?php if ( stripos( $platform, 'github' ) !== false ) : ?>
-						<svg class="mk-w-6 mk-h-6" fill="currentColor" viewBox="0 0 24 24">
+						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
 						</svg>
 						<?php elseif ( stripos( $platform, 'linkedin' ) !== false ) : ?>
-						<svg class="mk-w-6 mk-h-6" fill="currentColor" viewBox="0 0 24 24">
+						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
 						</svg>
 						<?php elseif ( stripos( $platform, 'codepen' ) !== false ) : ?>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="mk-w-6 mk-h-6" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true">
 							<path d="M3.06 41.732L32 60.932l28.94-19.2V22.268L32 3.068l-28.94 19.2zm57.878 0L32 22.268 3.06 41.732m0-19.463L32 41.47l28.94-19.2M32 3.068v19.2m0 19.463v19.2" stroke-width="5"/>
 						</svg>
 						<?php else : ?>
-						<svg class="mk-w-6 mk-h-6" fill="currentColor" viewBox="0 0 24 24">
+						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
 						</svg>
 						<?php endif; ?>
@@ -125,9 +127,9 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 			<a href="<?php echo esc_url( $resume_url ); ?>"
 			   target="_blank"
 			   rel="noopener noreferrer"
-			   class="mk-text-slate-400 hover:mk-text-white mk-transition-colors"
+			   class="text-slate-400 hover:text-white transition-colors"
 			   aria-label="Resume / CV">
-				<svg class="mk-w-6 mk-h-6" fill="currentColor" viewBox="0 0 24 24">
+				<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
 					<path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/>
 				</svg>
 			</a>
@@ -157,17 +159,17 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 	</div>
 
 	<!-- Main Content (Right Side on Desktop) -->
-	<main class="main-content lg:mk-ml-[50%] mk-px-6 md:mk-px-12 lg:mk-px-24 mk-py-24">
+	<main class="main-content lg:flex-1 px-6 md:px-12 lg:px-14 py-24">
 
 		<!-- Mobile Header -->
-		<div class="mobile-header lg:mk-hidden mk-mb-16">
-			<h1 class="mk-text-4xl mk-font-bold mk-text-white mk-mb-3 mk-tracking-tight">
+		<div class="mobile-header lg:hidden mb-16">
+			<h1 class="text-4xl font-bold text-white mb-3 tracking-tight">
 				<?php echo esc_html( $hero_name ); ?>
 			</h1>
-			<h2 class="mk-text-xl mk-font-semibold mk-text-slate-300 mk-mb-2">
+			<h2 class="text-xl font-semibold text-slate-300 mb-2">
 				<?php echo esc_html( $hero_title ); ?>
 			</h2>
-			<p class="mk-text-base mk-text-slate-400 mk-mb-2">
+			<p class="text-base text-slate-400 mb-2">
 				<?php echo esc_html( $hero_summary ); ?>
 			</p>
 		</div>
@@ -176,36 +178,36 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 		<div class="main-sections-wrapper">
 
 			<!-- About Section -->
-			<section id="about" class="section about-section mk-mb-32 mk-scroll-mt-24">
-				<div class="section-header mk-mb-8 lg:mk-hidden">
-					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">About</h2>
+			<section id="about" class="section about-section mb-32 scroll-mt-24">
+				<div class="section-header mb-8 lg:hidden">
+					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">About</h2>
 				</div>
 				<?php get_template_part( 'template-parts/portfolio-v2/about-me' ); ?>
 			</section>
 
 			<!-- Skills Section -->
-			<section id="skills" class="section skills-section mk-mb-32 mk-scroll-mt-24">
-				<div class="section-header mk-mb-8 lg:mk-hidden">
-					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Skills</h2>
+			<section id="skills" class="section skills-section mb-32 scroll-mt-24">
+				<div class="section-header mb-8 lg:hidden">
+					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Skills</h2>
 				</div>
 				<?php get_template_part( 'template-parts/portfolio-v2/skills' ); ?>
 			</section>
 
 			<!-- Experience Section -->
-			<section id="experience" class="section experience-section mk-mb-32 mk-scroll-mt-24">
-				<div class="section-header mk-mb-8 lg:mk-hidden">
-					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Experience</h2>
+			<section id="experience" class="section experience-section mb-32 scroll-mt-24">
+				<div class="section-header mb-8 lg:hidden">
+					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Experience</h2>
 				</div>
 				<?php get_template_part( 'template-parts/portfolio-v2/experience' ); ?>
 
 				<!-- View Full Resume -->
 				<?php if ( $resume_url ) : ?>
-					<div class="mk-mt-12">
+					<div class="mt-12">
 						<a href="<?php echo esc_url( $resume_url ); ?>"
 						   target="_blank"
-						   class="mk-inline-flex mk-items-center mk-gap-2 mk-text-white mk-font-semibold mk-group">
-							<span class="mk-border-b-2 mk-border-slate-900">View Full Résumé</span>
-							<svg class="mk-w-4 mk-h-4 group-hover:mk-translate-x-1 mk-transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						   class="inline-flex items-center gap-2 text-white font-semibold group">
+							<span class="border-b-2 border-slate-900">View Full Résumé</span>
+							<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
 							</svg>
 						</a>
@@ -214,9 +216,9 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 			</section>
 
 			<!-- Projects Section -->
-			<section id="projects" class="section projects-section mk-mb-32 mk-scroll-mt-24">
-				<div class="section-header mk-mb-8 lg:mk-hidden">
-					<h2 class="mk-text-sm mk-font-bold mk-text-white mk-uppercase mk-tracking-widest mk-mb-8">Projects</h2>
+			<section id="projects" class="section projects-section mb-32 scroll-mt-24">
+				<div class="section-header mb-8 lg:hidden">
+					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Projects</h2>
 				</div>
 				<?php get_template_part( 'template-parts/portfolio-v2/projects' ); ?>
 			</section>
@@ -224,15 +226,17 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 		</div><!-- /.main-sections-wrapper -->
 
 		<!-- Footer Credits -->
-		<footer class="portfolio-footer mk-mt-32 mk-pt-16 mk-border-t mk-border-slate-200">
-			<p class="mk-text-sm mk-text-slate-400 mk-text-center lg:mk-text-left">
-				Built with <a href="https://wordpress.org" class="mk-text-slate-300 hover:mk-text-white" target="_blank">WordPress</a> &
-				<a href="https://tailwindcss.com" class="mk-text-slate-300 hover:mk-text-white" target="_blank">Tailwind CSS</a>.
-				Deployed with <a href="https://www.siteground.com" class="mk-text-slate-300 hover:mk-text-white" target="_blank">SiteGround</a>.
+		<footer class="portfolio-footer mt-32 pt-16 border-t border-slate-200">
+			<p class="text-sm text-slate-400 text-center lg:text-left">
+				Built with <a href="https://wordpress.org" class="text-slate-300 hover:text-white" target="_blank">WordPress</a> &
+				<a href="https://tailwindcss.com" class="text-slate-300 hover:text-white" target="_blank">Tailwind CSS</a>.
+				Deployed with <a href="https://www.siteground.com" class="text-slate-300 hover:text-white" target="_blank">SiteGround</a>.
 			</p>
 		</footer>
 
 	</main>
+
+	</div><!-- /.layout-wrapper -->
 
 </div>
 
@@ -244,13 +248,13 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 @media (min-width: 1024px) {
 
 	/* Animated padding-top centres intro text vertically on load,
-	   then snaps to 6rem (96px) to align with main's mk-py-24 */
+	   then snaps to 6rem (96px) to align with main's py-24 */
 	.side-navigation {
 		padding-top: calc(50vh - 90px);
 		transition: padding-top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	body.is-scrolled .side-navigation {
-		padding-top: 6rem; /* 96px — identical to mk-py-24 on <main> */
+		padding-top: 6rem; /* 96px — identical to py-24 on <main> */
 	}
 
 	/* WP admin bar pushes document flow down 32px but fixed elements
@@ -397,20 +401,20 @@ document.addEventListener('DOMContentLoaded', function() {
 			link.classList.remove('active');
 			const indicator = link.querySelector('.nav-indicator');
 			const text = link.querySelector('.nav-text');
-			indicator.classList.remove('mk-w-16', 'mk-bg-slate-600');
-			indicator.classList.add('mk-w-8', 'mk-bg-slate-600');
-			text.classList.remove('mk-text-white');
-			text.classList.add('mk-text-slate-400');
+			indicator.classList.remove('w-16', 'bg-slate-600');
+			indicator.classList.add('w-8', 'bg-slate-600');
+			text.classList.remove('text-white');
+			text.classList.add('text-slate-400');
 		});
 
 		if (navLinks[index]) {
 			navLinks[index].classList.add('active');
 			const activeIndicator = navLinks[index].querySelector('.nav-indicator');
 			const activeText = navLinks[index].querySelector('.nav-text');
-			activeIndicator.classList.remove('mk-w-8', 'mk-bg-slate-600');
-			activeIndicator.classList.add('mk-w-16', 'mk-bg-slate-600');
-			activeText.classList.remove('mk-text-slate-400');
-			activeText.classList.add('mk-text-white');
+			activeIndicator.classList.remove('w-8', 'bg-slate-600');
+			activeIndicator.classList.add('w-16', 'bg-slate-600');
+			activeText.classList.remove('text-slate-400');
+			activeText.classList.add('text-white');
 		}
 	}
 

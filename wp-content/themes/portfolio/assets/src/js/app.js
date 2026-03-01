@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
     $mobileMenuToggle.on(
         "click",
         function () {
-            $mobileMenu.toggleClass("mk-hidden");
+            $mobileMenu.toggleClass("hidden");
         }
     );
 

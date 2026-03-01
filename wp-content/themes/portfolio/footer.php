@@ -14,14 +14,14 @@
 			</div><!-- #primary -->
 		</div><!-- #content -->
 
-		<footer id="site-footer" class="site-footer mk-bg-slate-900 mk-text-slate-300 mk-py-12">
-			<div class="mk-max-w-container mk-mx-auto mk-px-4">
+		<footer id="site-footer" class="site-footer bg-slate-900 text-slate-300 py-12">
+			<div class="max-w-container mx-auto px-4">
 
 				<?php // Footer Bottom Section. ?>
-				<div class="footer-bottom mk-border-t mk-border-slate-700 mk-pt-8 mk-flex mk-flex-col md:mk-flex-row mk-justify-between mk-items-center mk-gap-4">
+				<div class="footer-bottom border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
 
 					<?php // Copyright. ?>
-					<p class="mk-text-sm mk-text-slate-400 mk-m-0">
+					<p class="text-sm text-slate-400 m-0">
 						<?php
 						printf(
 							/* translators: %1$s: current year, %2$s: site name */
@@ -39,7 +39,7 @@
 							wp_nav_menu(
 								array(
 									'theme_location' => 'footer',
-									'menu_class'     => 'mk-flex mk-gap-6 mk-m-0 mk-list-none mk-text-sm',
+									'menu_class'     => 'flex gap-6 m-0 list-none text-sm',
 									'container'      => false,
 									'depth'          => 1,
 									'fallback_cb'    => false,
@@ -50,7 +50,7 @@
 					<?php endif; ?>
 
 					<?php // Social Media Links (optional). ?>
-					<div class="social-links mk-flex mk-gap-4">
+					<div class="social-links flex gap-4">
 						<?php
 						// You can replace these with dynamic links from theme options.
 						$social_links = array(
@@ -63,7 +63,7 @@
 						foreach ( $social_links as $social => $url ) :
 							if ( ! empty( $url ) ) :
 								?>
-								<a href="<?php echo esc_url( $url ); ?>" class="mk-text-slate-400 hover:mk-text-white" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( ucfirst( $social ) ); ?>">
+								<a href="<?php echo esc_url( $url ); ?>" class="text-slate-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( ucfirst( $social ) ); ?>">
 									<?php echo wp_kses( portfolio_2026_svgs( $social ), portfolio_2026_allowed_svg_tags() ); ?>
 								</a>
 								<?php

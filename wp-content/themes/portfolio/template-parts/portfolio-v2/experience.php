@@ -1,6 +1,14 @@
 <?php
 /**
- * Experience Section - Minimalist List Style
+ * Experience Section - Card List Style
+ *
+ * ACF Fields (group: Experience Card):
+ *   - start_date   (date_picker, return_format: d/m/Y)
+ *   - end_date     (date_picker, return_format: d/m/Y)
+ *   - title        (text)  — job title
+ *   - link         (link, return_format: array) — { url, title (company), target }
+ *   - description  (textarea)
+ *   - skills       (relationship → skill CPT, return_format: id)
  *
  * @package portfolio_2026
  */
@@ -16,7 +24,7 @@ $experience_query = new WP_Query(
 );
 ?>
 
-<div class="experience-list mk-space-y-12">
+<ol class="experience-list group/list space-y-12">
 
 	<?php if ( $experience_query->have_posts() ) : ?>
 
@@ -24,83 +32,111 @@ $experience_query = new WP_Query(
 		while ( $experience_query->have_posts() ) :
 			$experience_query->the_post();
 
-			$company_name = get_field( 'company_name' );
-			$job_title    = get_field( 'job_title' ) ?: get_the_title();
-			$start_date   = get_field( 'start_date' );
-			$end_date     = get_field( 'end_date' );
-			$location     = get_field( 'location' );
-			$technologies = get_field( 'technologies' );
+			$job_title   = get_field( 'title' );
+			$link        = get_field( 'link' );
+			$start_date  = get_field( 'start_date' );
+			$end_date    = get_field( 'end_date' );
+			$description = get_field( 'description' );
+			$skill_ids   = get_field( 'skills' );
 
-			// Format dates
-			$start_formatted = $start_date ? gmdate( 'M Y', strtotime( $start_date ) ) : '';
-			$end_formatted   = $end_date === 'Present' ? 'Present' : ( $end_date ? gmdate( 'M Y', strtotime( $end_date ) ) : 'Present' );
+			// Format dates: d/m/Y → "M Y" (e.g. "Jan 2018")
+			$start_formatted = $start_date ? DateTime::createFromFormat( 'd/m/Y', $start_date )->format( 'M Y' ) : '';
+			$end_formatted   = $end_date ? DateTime::createFromFormat( 'd/m/Y', $end_date )->format( 'M Y' ) : __( 'Present', 'portfolio_2026' );
 			$date_range      = $start_formatted . ' — ' . $end_formatted;
+
+			// Link field (ACF link object)
+			$company_name   = $link ? $link['title'] : '';
+			$company_url    = $link ? $link['url'] : '';
+			$company_target = ( $link && $link['target'] ) ? $link['target'] : '_self';
+			$is_external    = $company_target === '_blank';
+
+			$aria_label = $job_title;
+			if ( $company_name ) {
+				$aria_label .= ' ' . __( 'at', 'portfolio_2026' ) . ' ' . $company_name;
+				if ( $is_external ) {
+					$aria_label .= ' ' . __( '(opens in a new tab)', 'portfolio_2026' );
+				}
+			}
 			?>
 
-			<div class="experience-item mk-group mk-relative mk-grid mk-gap-4 mk-pb-1 mk-transition-all sm:mk-grid-cols-8 sm:mk-gap-8 md:mk-gap-4 lg:hover:!mk-opacity-100 lg:group-hover/list:mk-opacity-50">
+			<li class="mb-12">
+				<div class="group relative grid items-start pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
 
-				<!-- Date Range (Left on Desktop) -->
-				<div class="sm:mk-col-span-2">
-					<p class="mk-text-xs mk-font-semibold mk-uppercase mk-tracking-wide mk-text-slate-400">
+					<!-- Hover overlay -->
+					<div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" aria-hidden="true"></div>
+
+					<!-- Date range -->
+					<header class="z-10 mt-4 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
+					        aria-label="<?php echo esc_attr( $date_range ); ?>">
 						<?php echo esc_html( $date_range ); ?>
-					</p>
-				</div>
+					</header>
 
-				<!-- Content (Right on Desktop) -->
-				<div class="sm:mk-col-span-6">
+					<!-- Content -->
+					<div class="z-10 sm:col-span-6 mb-4">
 
-					<!-- Job Title & Company -->
-					<h3 class="mk-font-medium mk-leading-snug mk-text-white mk-mb-2">
-						<div>
-							<a href="<?php the_permalink(); ?>"
-							   class="mk-inline-flex mk-items-baseline mk-text-base mk-font-semibold mk-leading-tight mk-text-white group/link">
-								<span class="mk-absolute -mk-inset-x-4 -mk-inset-y-2.5 mk-hidden mk-rounded md:-mk-inset-x-6 md:-mk-inset-y-4 lg:mk-block"></span>
+						<!-- Job Title & Company -->
+						<h3 class="leading-snug text-slate-400 transition-colors group-hover:text-white">
+							<a class="inline-flex items-baseline font-medium leading-tight text-slate-400 group-hover:text-white transition-colors group/link text-base"
+							   href="<?php echo esc_url( $company_url ?: get_permalink() ); ?>"
+							   target="<?php echo esc_attr( $company_target ); ?>"
+							   <?php if ( $is_external ) : ?>rel="noreferrer noopener"<?php endif; ?>
+							   aria-label="<?php echo esc_attr( $aria_label ); ?>">
+								<span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 								<span>
 									<?php echo esc_html( $job_title ); ?>
 									<?php if ( $company_name ) : ?>
-										<span class="mk-inline-block">
-											· <?php echo esc_html( $company_name ); ?>
-											<svg class="mk-inline-block mk-h-4 mk-w-4 mk-shrink-0 mk-transition-transform group-hover/link:-mk-translate-y-1 group-hover/link:mk-translate-x-1 group-focus-visible/link:-mk-translate-y-1 group-focus-visible/link:mk-translate-x-1 mk-motion-reduce:mk-transition-none ml-1 mk-translate-y-px" viewBox="0 0 20 20" fill="currentColor">
-												<path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"></path>
-											</svg>
+										·&nbsp;<span class="inline-block">
+											<?php echo esc_html( $company_name ); ?>
+											<?php if ( $is_external ) : ?>
+												<?php echo portfolio_2026_svgs( 'arrow-external', 'inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+											<?php endif; ?>
 										</span>
 									<?php endif; ?>
 								</span>
 							</a>
-						</div>
-					</h3>
+						</h3>
 
-					<!-- Description -->
-					<div class="mk-mt-2 mk-text-sm mk-leading-normal mk-text-slate-400">
-						<?php the_excerpt(); ?>
+						<!-- Description -->
+						<?php if ( $description ) : ?>
+							<p class="mt-2 text-sm leading-normal text-slate-400">
+								<?php echo esc_html( $description ); ?>
+							</p>
+						<?php endif; ?>
+
+						<!-- Skills -->
+						<?php if ( $skill_ids ) : ?>
+							<ul class="mt-2 flex flex-wrap" aria-label="<?php esc_attr_e( 'Technologies used', 'portfolio_2026' ); ?>">
+								<?php foreach ( $skill_ids as $skill_id ) :
+									$skill_name    = get_the_title( $skill_id );
+									$color_family  = portfolio_2026_skill_color_family( $skill_name );
+									$color_classes = portfolio_2026_skill_classes( $color_family, true );
+									?>
+									<li class="mr-1.5 mt-2">
+										<div class="flex items-center rounded-full px-3 py-1 text-xs font-medium leading-5 ring-1 ring-inset <?php echo esc_attr( $color_classes ); ?>">
+											<?php echo esc_html( $skill_name ); ?>
+										</div>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+
 					</div>
 
-					<!-- Technologies -->
-					<?php if ( $technologies ) : ?>
-						<ul class="mk-mt-3 mk-flex mk-flex-wrap mk-gap-2">
-							<?php
-							$tech_array = is_array( $technologies ) ? $technologies : explode( ',', $technologies );
-							foreach ( $tech_array as $tech ) :
-								$tech = trim( $tech );
-								?>
-								<li class="mk-flex mk-items-center mk-rounded-full mk-bg-teal-400/10 mk-px-3 mk-py-1 mk-text-xs mk-font-medium mk-leading-5 mk-text-teal-900">
-									<?php echo esc_html( $tech ); ?>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-
 				</div>
-
-			</div>
+			</li>
 
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 
 	<?php else : ?>
-		<div class="mk-text-slate-400">
-			<p>No experience added yet. <a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=experience' ) ); ?>" class="mk-text-white mk-font-semibold">Add your first experience →</a></p>
-		</div>
+		<li class="text-slate-400">
+			<p><?php esc_html_e( 'No experience added yet.', 'portfolio_2026' ); ?>
+				<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=experience' ) ); ?>"
+				   class="text-white font-semibold">
+					<?php esc_html_e( 'Add your first experience →', 'portfolio_2026' ); ?>
+				</a>
+			</p>
+		</li>
 	<?php endif; ?>
 
-</div>
+</ol>

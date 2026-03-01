@@ -12,7 +12,7 @@
 ?>
 
 <!-- EXAMPLE 1: Card with Post Data -->
-<div class="mk-grid mk-grid-cols-1 md:mk-grid-cols-3 mk-gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 	<?php
 	$posts = get_posts(
 		array(

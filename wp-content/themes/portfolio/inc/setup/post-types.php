@@ -52,9 +52,9 @@ function portfolio_2026_register_post_types() {
 			),
 			'public'       => true,
 			'has_archive'  => false,
-			'show_in_rest' => true,
+			'show_in_rest' => false,
 			'menu_icon'    => 'dashicons-businessperson',
-			'supports'     => array( 'title', 'editor', 'thumbnail' ),
+			'supports'     => array( 'title', 'thumbnail' ),
 			'rewrite'      => array( 'slug' => 'experience' ),
 		)
 	);

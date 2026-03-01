@@ -36,24 +36,24 @@ if ( ! empty( $block['className'] ) ) {
 }
 
 // Theme classes.
-$text_color_class = ( 'dark' === $theme ) ? 'mk-text-white' : 'mk-text-primary';
-$bg_color_class   = ( 'dark' === $theme ) ? 'mk-bg-gradient-layered' : 'mk-bg-grey-light';
+$text_color_class = ( 'dark' === $theme ) ? 'text-white' : 'text-primary';
+$bg_color_class   = ( 'dark' === $theme ) ? 'bg-gradient-layered' : 'bg-grey-light';
 $cta_button_class = ( 'dark' === $theme ) ? 'cta-btn cta-btn--white' : 'cta-btn';
 
 // Top margin class.
-$margin_top_class = $remove_top_margin ? 'mk-pt-0' : 'mk-pt-16 md:mk-pt-24';
+$margin_top_class = $remove_top_margin ? 'pt-0' : 'pt-16 md:pt-24';
 ?>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( "$class_name mk-w-full mk-bg-white mk-pb-16 md:mk-pb-24 $margin_top_class " ); ?>">
-	<div class="mk-flex mk-justify-center">
-		<div class="mk-relative mk-w-full mk-max-w-container mk-mx-auto mk-px-4">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( "$class_name w-full bg-white pb-16 md:pb-24 $margin_top_class " ); ?>">
+	<div class="flex justify-center">
+		<div class="relative w-full max-w-container mx-auto px-4">
 
-			<div class="mk-max-w-container 
+			<div class="max-w-container 
 			<?php
 			echo esc_attr(
 				'solid' === $background
-					? "$bg_color_class mk-rounded-lg"
-					: 'mk-relative mk-overflow-hidden mk-rounded-lg'
+					? "$bg_color_class rounded-lg"
+					: 'relative overflow-hidden rounded-lg'
 			);
 			?>
 			">
@@ -65,22 +65,22 @@ $margin_top_class = $remove_top_margin ? 'mk-pt-0' : 'mk-pt-16 md:mk-pt-24';
 						'large',
 						false,
 						array(
-							'class' => 'mk-absolute mk-inset-0 mk-w-full mk-h-full mk-object-cover mk-z-0 mk-rounded-lg',
+							'class' => 'absolute inset-0 w-full h-full object-cover z-0 rounded-lg',
 						)
 					);
 					?>
-					<div class="mk-absolute mk-inset-0 mk-z-10 mk-max-w-container mk-px-4"></div>
+					<div class="absolute inset-0 z-10 max-w-container px-4"></div>
 				<?php endif; ?>
 
-				<div class="mk-relative mk-z-20 mk-max-w-container mk-mx-auto mk-gap-12 md:mk-gap-[64px] mk-px-4 md:mk-px-[64px] mk-py-16 md:mk-py-[80px]">
-					<div class="<?php echo esc_attr( $text_color_class ); ?> mk-flex mk-flex-col md:mk-flex-row mk-items-center mk-justify-between mk-gap-12">
+				<div class="relative z-20 max-w-container mx-auto gap-12 md:gap-[64px] px-4 md:px-[64px] py-16 md:py-[80px]">
+					<div class="<?php echo esc_attr( $text_color_class ); ?> flex flex-col md:flex-row items-center justify-between gap-12">
 						<?php if ( $text ) : ?>
 							<?php if ( 'dark' === $theme ) : ?>
-								<div class="default-insight-card_content mk-text-center md:mk-text-start mk-px-4 mk-py-8 md:mk-px-12 md:mk-py-16 mk-text-1xl md:mk-text-3xl mk-font-bold mk-w-full md:mk-w-3/4">
+								<div class="default-insight-card_content text-center md:text-start px-4 py-8 md:px-12 md:py-16 text-1xl md:text-3xl font-bold w-full md:w-3/4">
 									<?php echo wp_kses_post( $text ); ?>
 								</div>
 							<?php else : ?>
-								<div class=" mk-text-center md:mk-text-start mk-text-1xl md:mk-text-3xl mk-font-bold mk-w-full md:mk-w-3/4">
+								<div class=" text-center md:text-start text-1xl md:text-3xl font-bold w-full md:w-3/4">
 									<?php echo wp_kses_post( $text ); ?>
 								</div>
 							<?php endif; ?>

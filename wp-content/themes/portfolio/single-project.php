@@ -23,32 +23,32 @@ while ( have_posts() ) :
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'single-project' ); ?>>
 
 		<!-- Project Hero -->
-		<section class="project-hero mk-relative mk-min-h-[60vh] mk-flex mk-items-center mk-justify-center mk-bg-gradient-to-br mk-from-gray-900 mk-to-gray-800 mk-text-white mk-overflow-hidden">
+		<section class="project-hero relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
 
 			<!-- Background Pattern -->
-			<div class="mk-absolute mk-inset-0 mk-opacity-10">
+			<div class="absolute inset-0 opacity-10">
 				<?php if ( has_post_thumbnail() ) : ?>
-					<?php the_post_thumbnail( 'full', array( 'class' => 'mk-w-full mk-h-full mk-object-cover' ) ); ?>
+					<?php the_post_thumbnail( 'full', array( 'class' => 'w-full h-full object-cover' ) ); ?>
 				<?php endif; ?>
 			</div>
 
-			<div class="mk-container mk-max-w-container mk-mx-auto mk-px-4 mk-relative mk-z-10">
+			<div class="container max-w-container mx-auto px-4 relative z-10">
 
 				<!-- Back Button -->
 				<a href="/#portfolio-content"
-				   class="mk-inline-flex mk-items-center mk-gap-2 mk-text-white mk-mb-8 hover:mk-text-blue-400 mk-transition-colors">
+				   class="inline-flex items-center gap-2 text-white mb-8 hover:text-blue-400 transition-colors">
 					<?php echo wp_kses( portfolio_2026_svgs( 'arrow-left' ), portfolio_2026_allowed_svg_tags() ); ?>
 					Back to Portfolio
 				</a>
 
 				<!-- Status Badge -->
 				<?php if ( $project_status ) : ?>
-					<div class="mk-mb-4">
-						<span class="mk-inline-block mk-text-sm mk-font-bold mk-px-4 mk-py-2 mk-rounded-full mk-shadow-lg
+					<div class="mb-4">
+						<span class="inline-block text-sm font-bold px-4 py-2 rounded-full shadow-lg
 							<?php
-							echo $project_status === 'Active' ? 'mk-bg-green-500 mk-text-white' : '';
-							echo $project_status === 'Completed' ? 'mk-bg-blue-500 mk-text-white' : '';
-							echo $project_status === 'In Progress' ? 'mk-bg-yellow-500 mk-text-white' : '';
+							echo $project_status === 'Active' ? 'bg-green-500 text-white' : '';
+							echo $project_status === 'Completed' ? 'bg-blue-500 text-white' : '';
+							echo $project_status === 'In Progress' ? 'bg-yellow-500 text-white' : '';
 							?>
 						">
 							<?php echo esc_html( $project_status ); ?>
@@ -57,19 +57,19 @@ while ( have_posts() ) :
 				<?php endif; ?>
 
 				<!-- Project Title -->
-				<h1 class="mk-text-5xl md:mk-text-6xl mk-font-bold mk-mb-6">
+				<h1 class="text-5xl md:text-6xl font-bold mb-6">
 					<?php the_title(); ?>
 				</h1>
 
 				<!-- Project Excerpt -->
-				<p class="mk-text-xl mk-text-gray-300 mk-max-w-3xl mk-mb-8">
+				<p class="text-xl text-gray-300 max-w-3xl mb-8">
 					<?php echo esc_html( get_the_excerpt() ); ?>
 				</p>
 
 				<!-- Project Meta -->
-				<div class="mk-flex mk-flex-wrap mk-gap-4 mk-mb-8">
+				<div class="flex flex-wrap gap-4 mb-8">
 					<?php if ( $start_date ) : ?>
-						<div class="mk-flex mk-items-center mk-gap-2 mk-text-gray-300">
+						<div class="flex items-center gap-2 text-gray-300">
 							<span>📅</span>
 							<span><?php echo esc_html( gmdate( 'M Y', strtotime( $start_date ) ) ); ?>
 								<?php echo $end_date ? ' - ' . gmdate( 'M Y', strtotime( $end_date ) ) : ' - Present'; ?>
@@ -79,12 +79,12 @@ while ( have_posts() ) :
 				</div>
 
 				<!-- Action Buttons -->
-				<div class="mk-flex mk-flex-wrap mk-gap-4">
+				<div class="flex flex-wrap gap-4">
 					<?php if ( $project_url ) : ?>
 						<a href="<?php echo esc_url( $project_url ); ?>"
 						   target="_blank"
 						   rel="noopener noreferrer"
-						   class="mk-inline-flex mk-items-center mk-gap-2 mk-bg-white mk-text-gray-900 mk-px-8 mk-py-4 mk-rounded-lg mk-font-semibold hover:mk-shadow-xl mk-transition-all">
+						   class="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all">
 							🌐 View Live Project
 						</a>
 					<?php endif; ?>
@@ -93,8 +93,8 @@ while ( have_posts() ) :
 						<a href="<?php echo esc_url( $github_url ); ?>"
 						   target="_blank"
 						   rel="noopener noreferrer"
-						   class="mk-inline-flex mk-items-center mk-gap-2 mk-bg-gray-900 mk-text-white mk-border-2 mk-border-white mk-px-8 mk-py-4 mk-rounded-lg mk-font-semibold hover:mk-bg-gray-800 mk-transition-all">
-							<svg class="mk-w-5 mk-h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+						   class="inline-flex items-center gap-2 bg-gray-900 text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
 							View on GitHub
 						</a>
 					<?php endif; ?>
@@ -104,21 +104,21 @@ while ( have_posts() ) :
 		</section>
 
 		<!-- Project Content -->
-		<section class="project-content mk-bg-gray-50 mk-py-16">
-			<div class="mk-container mk-max-w-container mk-mx-auto mk-px-4">
+		<section class="project-content bg-gray-50 py-16">
+			<div class="container max-w-container mx-auto px-4">
 
-				<div class="mk-grid lg:mk-grid-cols-3 mk-gap-12">
+				<div class="grid lg:grid-cols-3 gap-12">
 
 					<!-- Main Content -->
-					<div class="lg:mk-col-span-2">
+					<div class="lg:col-span-2">
 
 						<!-- Technologies Used -->
 						<?php if ( $technologies_used ) : ?>
-							<div class="technologies-section mk-bg-white mk-p-8 mk-rounded-xl mk-shadow-lg mk-mb-8">
-								<h2 class="mk-text-2xl mk-font-bold mk-mb-4 mk-text-gray-900">🛠️ Technologies Used</h2>
-								<div class="mk-flex mk-flex-wrap mk-gap-3">
+							<div class="technologies-section bg-white p-8 rounded-xl shadow-lg mb-8">
+								<h2 class="text-2xl font-bold mb-4 text-gray-900">🛠️ Technologies Used</h2>
+								<div class="flex flex-wrap gap-3">
 									<?php foreach ( $technologies_used as $tech ) : ?>
-										<span class="mk-text-sm mk-font-semibold mk-px-4 mk-py-2 mk-bg-blue-100 mk-text-blue-800 mk-rounded-lg">
+										<span class="text-sm font-semibold px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">
 											<?php echo esc_html( $tech ); ?>
 										</span>
 									<?php endforeach; ?>
@@ -127,27 +127,27 @@ while ( have_posts() ) :
 						<?php endif; ?>
 
 						<!-- Project Description -->
-						<div class="description-section mk-bg-white mk-p-8 mk-rounded-xl mk-shadow-lg mk-mb-8">
-							<h2 class="mk-text-2xl mk-font-bold mk-mb-4 mk-text-gray-900">📝 About This Project</h2>
-							<div class="mk-prose mk-prose-lg mk-max-w-none">
+						<div class="description-section bg-white p-8 rounded-xl shadow-lg mb-8">
+							<h2 class="text-2xl font-bold mb-4 text-gray-900">📝 About This Project</h2>
+							<div class="prose prose-lg max-w-none">
 								<?php the_content(); ?>
 							</div>
 						</div>
 
 						<!-- Project Features -->
 						<?php if ( $project_features && have_rows( 'project_features' ) ) : ?>
-							<div class="features-section mk-bg-white mk-p-8 mk-rounded-xl mk-shadow-lg mk-mb-8">
-								<h2 class="mk-text-2xl mk-font-bold mk-mb-6 mk-text-gray-900">✨ Key Features</h2>
-								<div class="mk-grid md:mk-grid-cols-2 mk-gap-4">
+							<div class="features-section bg-white p-8 rounded-xl shadow-lg mb-8">
+								<h2 class="text-2xl font-bold mb-6 text-gray-900">✨ Key Features</h2>
+								<div class="grid md:grid-cols-2 gap-4">
 									<?php
 									while ( have_rows( 'project_features' ) ) :
 										the_row();
 										$feature_title = get_sub_field( 'feature_title' );
 										$feature_desc  = get_sub_field( 'feature_description' );
 										?>
-										<div class="feature-item mk-p-4 mk-bg-gray-50 mk-rounded-lg mk-border-l-4 mk-border-blue-600">
-											<h3 class="mk-font-bold mk-text-gray-900 mk-mb-2"><?php echo esc_html( $feature_title ); ?></h3>
-											<p class="mk-text-gray-600 mk-text-sm"><?php echo esc_html( $feature_desc ); ?></p>
+										<div class="feature-item p-4 bg-gray-50 rounded-lg border-l-4 border-blue-600">
+											<h3 class="font-bold text-gray-900 mb-2"><?php echo esc_html( $feature_title ); ?></h3>
+											<p class="text-gray-600 text-sm"><?php echo esc_html( $feature_desc ); ?></p>
 										</div>
 									<?php endwhile; ?>
 								</div>
@@ -156,16 +156,16 @@ while ( have_posts() ) :
 
 						<!-- Project Gallery -->
 						<?php if ( $project_gallery ) : ?>
-							<div class="gallery-section mk-bg-white mk-p-8 mk-rounded-xl mk-shadow-lg">
-								<h2 class="mk-text-2xl mk-font-bold mk-mb-6 mk-text-gray-900">🖼️ Project Gallery</h2>
-								<div class="mk-grid md:mk-grid-cols-2 mk-gap-4">
+							<div class="gallery-section bg-white p-8 rounded-xl shadow-lg">
+								<h2 class="text-2xl font-bold mb-6 text-gray-900">🖼️ Project Gallery</h2>
+								<div class="grid md:grid-cols-2 gap-4">
 									<?php foreach ( $project_gallery as $image ) : ?>
 										<a href="<?php echo esc_url( $image['url'] ); ?>"
 										   data-lightbox="project-gallery"
-										   class="mk-block mk-rounded-lg mk-overflow-hidden mk-shadow-md hover:mk-shadow-xl mk-transition-shadow">
+										   class="block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
 											<img src="<?php echo esc_url( $image['sizes']['large'] ); ?>"
 												 alt="<?php echo esc_attr( $image['alt'] ); ?>"
-												 class="mk-w-full mk-h-64 mk-object-cover hover:mk-scale-105 mk-transition-transform mk-duration-300">
+												 class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
 										</a>
 									<?php endforeach; ?>
 								</div>
@@ -175,21 +175,21 @@ while ( have_posts() ) :
 					</div>
 
 					<!-- Sidebar -->
-					<div class="lg:mk-col-span-1">
+					<div class="lg:col-span-1">
 
 						<!-- Featured Image -->
 						<?php if ( has_post_thumbnail() ) : ?>
-							<div class="mk-bg-white mk-p-4 mk-rounded-xl mk-shadow-lg mk-mb-8">
-								<?php the_post_thumbnail( 'large', array( 'class' => 'mk-w-full mk-rounded-lg' ) ); ?>
+							<div class="bg-white p-4 rounded-xl shadow-lg mb-8">
+								<?php the_post_thumbnail( 'large', array( 'class' => 'w-full rounded-lg' ) ); ?>
 							</div>
 						<?php endif; ?>
 
 						<!-- Back to Projects -->
-						<div class="mk-bg-gradient-to-br mk-from-blue-600 mk-to-purple-600 mk-p-8 mk-rounded-xl mk-shadow-lg mk-text-white mk-text-center">
-							<h3 class="mk-text-xl mk-font-bold mk-mb-4">Explore More Projects</h3>
-							<p class="mk-mb-6 mk-text-blue-100">Check out my other work and see what I've been building.</p>
+						<div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8 rounded-xl shadow-lg text-white text-center">
+							<h3 class="text-xl font-bold mb-4">Explore More Projects</h3>
+							<p class="mb-6 text-blue-100">Check out my other work and see what I've been building.</p>
 							<a href="/#portfolio-content"
-							   class="mk-inline-block mk-bg-white mk-text-blue-600 mk-px-6 mk-py-3 mk-rounded-lg mk-font-semibold hover:mk-shadow-xl mk-transition-all">
+							   class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
 								View All Projects
 							</a>
 						</div>

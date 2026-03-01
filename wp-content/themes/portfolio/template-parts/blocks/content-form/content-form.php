@@ -35,28 +35,28 @@ if ( ! empty( $block['className'] ) ) {
 }
 
 // Determine layout classes.
-$layout_class = ( 'second' === $layout ) ? 'mk-flex-col-reverse md:mk-flex-row-reverse' : 'mk-flex-col md:mk-flex-row';
+$layout_class = ( 'second' === $layout ) ? 'flex-col-reverse md:flex-row-reverse' : 'flex-col md:flex-row';
 ?>
 
-<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?> mk-bg-white mk-py-12 md:mk-py-36">
-	<div class="mk-max-w-container mk-mx-auto mk-px-4">
-		<div class="mk-flex <?php echo esc_attr( $layout_class ); ?> md:mk-items-start md:mk-justify-between mk-gap-6 md:mk-gap-24">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="<?php echo esc_attr( $class_name ); ?> bg-white py-12 md:py-36">
+	<div class="max-w-container mx-auto px-4">
+		<div class="flex <?php echo esc_attr( $layout_class ); ?> md:items-start md:justify-between gap-6 md:gap-24">
 			
-			<div class="mk-w-full md:mk-w-[35%]">
+			<div class="w-full md:w-[35%]">
 				<?php if ( $heading ) : ?>
-					<h2 class="mk-text-primary-darker-title mk-font-satoshi mk-text-3xl mk-font-medium mk-mb-4">
+					<h2 class="text-primary-darker-title font-satoshi text-3xl font-medium mb-4">
 						<?php echo esc_html( $heading ); ?>
 					</h2>
 				<?php endif; ?>
 
 				<?php if ( $desc ) : ?>
-					<p class="mk-text-lg mk-text-primary-darker mk-mb-12 md:mk-mb-14">
+					<p class="text-lg text-primary-darker mb-12 md:mb-14">
 						<?php echo wp_kses_post( $desc ); ?>
 					</p>
 				<?php endif; ?>
 
 				<?php if ( $cta ) : ?>
-					<div class="mk-text-left">
+					<div class="text-left">
 						<a href="<?php echo esc_url( $cta['url'] ); ?>" class="cta-btn" target="<?php echo esc_attr( $cta['target'] ); ?>">
 							
 							<?php echo esc_html( $cta['title'] ); ?>
@@ -75,7 +75,7 @@ $layout_class = ( 'second' === $layout ) ? 'mk-flex-col-reverse md:mk-flex-row-r
 				<?php endif; ?>
 			</div>
 			
-			<div class="mk-relative mk-w-full md:mk-w-1/2 mk-pl-0">
+			<div class="relative w-full md:w-1/2 pl-0">
 				<?php if ( ! empty( $form_shortcode ) ) : ?>
 					<?php echo do_shortcode( $form_shortcode ); ?>
 				<?php endif; ?>

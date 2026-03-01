@@ -12,11 +12,11 @@ $text_404 = get_field( 'text_404', 'option' ) ? get_field( 'text_404', 'option' 
 get_header();
 ?>
 
-<div class="mk-max-w-container mk-mx-auto ">
-	<div class="mk-container mk-text-center mk-pt-8 lg:mk-pt-4 lg:pk-px-20 mk-pb-20 lg:mk-pb-44">
+<div class="max-w-container mx-auto ">
+	<div class="container text-center pt-8 lg:pt-4 lg:pk-px-20 pb-20 lg:pb-44">
 		
-			<h1 class="mk-font-satoshi mk-text-[164px] md:mk-text-[248px] mk-font-bold mk-text-white">404</h1>
-			<p class="mk-w-full lg:mk-w-[35%] mk-text-base mk-text-white mk-px-8 lg:mk-px-0 mk-mb-6 mk-mx-auto"><?php echo esc_html( $text_404 ); ?></p>   
+			<h1 class="font-satoshi text-[164px] md:text-[248px] font-bold text-white">404</h1>
+			<p class="w-full lg:w-[35%] text-base text-white px-8 lg:px-0 mb-6 mx-auto"><?php echo esc_html( $text_404 ); ?></p>   
 		
 	</div>
 </div>

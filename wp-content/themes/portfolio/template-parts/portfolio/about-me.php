@@ -10,12 +10,12 @@ $about_photos = get_field( 'about_me_photos', 'option' ); // Gallery field
 ?>
 
 <div class="about-me-content">
-	<h2 class="mk-text-4xl mk-font-bold mk-mb-8 mk-text-gray-900">About Me</h2>
+	<h2 class="text-4xl font-bold mb-8 text-gray-900">About Me</h2>
 
-	<div class="mk-grid md:mk-grid-cols-2 mk-gap-12 mk-items-start">
+	<div class="grid md:grid-cols-2 gap-12 items-start">
 
 		<!-- Text Content -->
-		<div class="about-text mk-prose mk-prose-lg mk-max-w-none">
+		<div class="about-text prose prose-lg max-w-none">
 			<?php if ( $about_text ) : ?>
 				<?php echo wp_kses_post( $about_text ); ?>
 			<?php else : ?>
@@ -27,19 +27,19 @@ $about_photos = get_field( 'about_me_photos', 'option' ); // Gallery field
 		<!-- Photo Gallery -->
 		<div class="about-photos">
 			<?php if ( $about_photos ) : ?>
-				<div class="mk-grid mk-grid-cols-2 mk-gap-4">
+				<div class="grid grid-cols-2 gap-4">
 					<?php foreach ( $about_photos as $photo ) : ?>
-						<div class="photo-item mk-rounded-lg mk-overflow-hidden mk-shadow-lg hover:mk-shadow-xl mk-transition-shadow">
+						<div class="photo-item rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
 							<img src="<?php echo esc_url( $photo['sizes']['medium'] ); ?>"
 								 alt="<?php echo esc_attr( $photo['alt'] ); ?>"
-								 class="mk-w-full mk-h-48 mk-object-cover hover:mk-scale-105 mk-transition-transform mk-duration-300">
+								 class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
 						</div>
 					<?php endforeach; ?>
 				</div>
 			<?php else : ?>
 				<!-- Placeholder -->
-				<div class="mk-bg-gray-200 mk-rounded-lg mk-h-96 mk-flex mk-items-center mk-justify-center">
-					<p class="mk-text-gray-500">Add photos in Theme Settings → About Me Photos</p>
+				<div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+					<p class="text-gray-500">Add photos in Theme Settings → About Me Photos</p>
 				</div>
 			<?php endif; ?>
 		</div>

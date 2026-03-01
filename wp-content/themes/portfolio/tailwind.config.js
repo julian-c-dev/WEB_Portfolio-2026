@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  prefix: 'mk-',
   content: [
     './**/*.php',
     './template-parts/**/*.php',

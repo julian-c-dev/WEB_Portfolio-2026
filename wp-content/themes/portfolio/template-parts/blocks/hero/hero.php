@@ -37,18 +37,18 @@ if ( ! empty( $block['className'] ) ) {
 }
 ?>
 
-<div id="<?php echo esc_html( $block_id ); ?>" class="<?php echo esc_html( $class_name ); ?> mk-relative mk-overflow-hidden">
+<div id="<?php echo esc_html( $block_id ); ?>" class="<?php echo esc_html( $class_name ); ?> relative overflow-hidden">
 	<?php
 		// Check the background type and display accordingly.
 		// If bg_type is "video" and a video URL exists, display the video.
 	if ( 'video' === $bg_type && $video ) :
-		$video_css = $video_mobile ? 'mk-hidden md:mk-block' : '';
+		$video_css = $video_mobile ? 'hidden md:block' : '';
 		?>
-			<video id="video-hero" class="<?php echo $video_css; // phpcs:disable ?> mk-w-full mk-h-screen mk-object-cover" preload="none" playsinline autoplay loop muted>
+			<video id="video-hero" class="<?php echo $video_css; // phpcs:disable ?> w-full h-screen object-cover" preload="none" playsinline autoplay loop muted>
 				<source src="<?php echo esc_url( $video['url'] ); ?>" type="video/mp4">
 			</video>
 			<?php if ( $video_mobile ) : ?>
-				<video id="video-hero" class="md:mk-hidden mk-w-full mk-h-screen mk-object-cover" preload="none" playsinline autoplay loop muted>
+				<video id="video-hero" class="md:hidden w-full h-screen object-cover" preload="none" playsinline autoplay loop muted>
 					<source src="<?php echo esc_url( $video_mobile['url'] ); ?>" type="video/mp4">
 				</video>
 			<?php endif; ?>
@@ -58,22 +58,22 @@ if ( ! empty( $block['className'] ) ) {
 			?>
 			<picture>
 				<source media="(max-width: 768px)" srcset="<?php echo esc_url( wp_get_attachment_image_url( $image_mobile, 'full' ) ); ?>">
-				<img class="mk-block mk-w-full mk-h-screen mk-object-cover" src="<?php echo esc_url( wp_get_attachment_image_url( $image_desktop, 'full' ) ); ?>" alt="">
+				<img class="block w-full h-screen object-cover" src="<?php echo esc_url( wp_get_attachment_image_url( $image_desktop, 'full' ) ); ?>" alt="">
 			</picture>
 			<?php
 			// Default background if no video or image is set.
 		else :
 			?>
-			<div class="mk-block mk-w-full mk-h-screen mk-bg-primary"></div>
+			<div class="block w-full h-screen bg-primary"></div>
 		<?php endif; ?>
 
-		<div class="mk-block mk-absolute mk-inset-0 mk-w-full mk-h-full">
-			<div id="hero-glass" class="mk-w-full mk-h-full">
+		<div class="block absolute inset-0 w-full h-full">
+			<div id="hero-glass" class="w-full h-full">
 				<style>
-					.mk-grid-cols-22 {
+					.grid-cols-22 {
 						grid-template-columns: repeat(22, minmax(0, 1fr));
 					}
-					.mk-grid-rows-12 {
+					.grid-rows-12 {
 						grid-template-rows: repeat(12, minmax(0, 1fr));
 					}
 					.glass-column {
@@ -91,21 +91,21 @@ if ( ! empty( $block['className'] ) ) {
 						background-blend-mode: overlay;
 					}
 				</style>
-				<div class="mk-hidden md:mk-grid mk-grid-cols-22 mk-w-full mk-h-full">
+				<div class="hidden md:grid grid-cols-22 w-full h-full">
 					<?php
 					for ( $i = 0; $i < 11; $i++ ) {
-						echo '<div class="mk-col-span-1 mk-h-full mk-backdrop-blur-md glass-column" style="background: linear-gradient(270deg, rgba(255, 255, 255, 0.01) 0%, rgba(0, 0, 0, 0.12) 76.04%, rgba(255, 255, 255, 0.01) 100%); background-blend-mode: overlay;"></div>';
+						echo '<div class="col-span-1 h-full backdrop-blur-md glass-column" style="background: linear-gradient(270deg, rgba(255, 255, 255, 0.01) 0%, rgba(0, 0, 0, 0.12) 76.04%, rgba(255, 255, 255, 0.01) 100%); background-blend-mode: overlay;"></div>';
 					}
 					?>
-					<div class="mk-col-span-11"></div>
+					<div class="col-span-11"></div>
 				</div>
-				<div class="md:mk-hidden mk-grid mk-grid-rows-12 mk-w-full mk-h-full">
+				<div class="md:hidden grid grid-rows-12 w-full h-full">
 					<?php
 					for ( $i = 0; $i < 6; $i++ ) {
-						echo '<div class="mk-row-span-1"></div>';
+						echo '<div class="row-span-1"></div>';
 					}
 					for ( $i = 0; $i < 6; $i++ ) {
-						echo '<div class="mk-row-span-1 mk-w-full mk-backdrop-blur-md glass-row"></div>';
+						echo '<div class="row-span-1 w-full backdrop-blur-md glass-row"></div>';
 					}
 					?>
 				</div>
@@ -113,16 +113,16 @@ if ( ! empty( $block['className'] ) ) {
 		</div>
 
 	<?php // Title and description & SVG to scroll down. ?>
-	<div class="mk-absolute mk-top-[55%] xs:mk-top-[65%] mk-left-0 mk-w-full mk-h-full">
-		<div class="mk-max-w-container mk-mx-auto mk-px-4">
-			<div class="mk-flex mk-flex-col md:mk-flex-row mk-justify-between md:mk-items-end mk-gap-6 xs:mk-gap-8 sm:mk-gap-16">
-				<div class="mk-flex mk-flex-col mk-w-full md:mk-w-[40%]">
-					<div class="mk-font-satoshi mk-text-4xl md:mk-text-5xl mk-font-bold mk-mb-4">
-						<p class="mk-block mk-text-white"><?php echo esc_html( $heading ); ?></p>
+	<div class="absolute top-[55%] xs:top-[65%] left-0 w-full h-full">
+		<div class="max-w-container mx-auto px-4">
+			<div class="flex flex-col md:flex-row justify-between md:items-end gap-6 xs:gap-8 sm:gap-16">
+				<div class="flex flex-col w-full md:w-[40%]">
+					<div class="font-satoshi text-4xl md:text-5xl font-bold mb-4">
+						<p class="block text-white"><?php echo esc_html( $heading ); ?></p>
 					</div>
-					<p class="mk-text-lg md:mk-text-lg mk-text-white"><?php echo wp_kses_post( $desc ); ?></p>
+					<p class="text-lg md:text-lg text-white"><?php echo wp_kses_post( $desc ); ?></p>
 				</div>
-				<div id="scroll-arrow" class="mk-flex mk-flex-col mk-justify-center mk-items-center mk-bg-white mk-w-[32px] mk-h-[32px] mk-rounded-full mk-cursor-pointer">
+				<div id="scroll-arrow" class="flex flex-col justify-center items-center bg-white w-[32px] h-[32px] rounded-full cursor-pointer">
 					<?php echo wp_kses( empty_svgs( 'arrow-down-primary' ), empty_allowed_svg_tags() ); ?>
 				</div>
 			</div>
