@@ -13,8 +13,6 @@ $hero_title   = get_field( 'hero_title', 'option' ) ?: 'WordPress & Front-End De
 $hero_summary = get_field( 'hero_summary', 'option' ) ?: 'I build accessible, pixel-perfect digital experiences for the web.';
 $social_links = get_field( 'social_links', 'option' ); // Repeater
 $resume_url   = get_field( 'resume_url', 'option' );
-$hero_photo   = get_field( 'hero_photo', 'option' );
-$hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.jpg';
 ?>
 
 <div class="portfolio-wrapper bg-slate-900 min-h-screen">
@@ -22,10 +20,10 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 	<div class="lg:max-w-8xl lg:mx-auto lg:flex">
 
 	<!-- Side Navigation (Desktop) -->
-	<aside class="side-navigation hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:w-1/2 lg:px-14 lg:pb-24 lg:z-10">
+	<aside class="side-navigation hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:w-1/2 lg:px-14 lg:pb-24 lg:pt-24 lg:z-10">
 
 		<!-- Name, Title & Tagline -->
-		<div class="hero-intro mb-16">
+		<div class="mb-16">
 			<h1 class="text-6xl font-bold text-white mb-4 tracking-tight">
 				<?php echo esc_html( $hero_name ); ?>
 			</h1>
@@ -37,8 +35,8 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 			</p>
 		</div>
 
-		<!-- Navigation Links (hidden until after hero) -->
-		<nav class="main-nav sidebar-reveal mb-16" aria-label="In-page jump links">
+		<!-- Navigation Links -->
+		<nav class="main-nav mb-16" aria-label="In-page jump links">
 			<ul class="space-y-3">
 				<li>
 					<a href="#about"
@@ -71,10 +69,9 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 			</ul>
 		</nav>
 
-		<!-- Social Links (hidden until after hero, pinned to bottom) -->
-		<div class="social-links sidebar-reveal flex gap-6">
+		<!-- Social Links (pinned to bottom) -->
+		<div class="social-links flex gap-6">
 			<?php
-			// Default social links if ACF not set
 			$default_socials = array(
 				array(
 					'platform' => 'GitHub',
@@ -138,26 +135,6 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 
 	</aside>
 
-	<!-- Hero Photo Overlay (Desktop only, disappears after first scroll) -->
-	<div class="hero-photo-overlay" aria-hidden="true">
-		<?php if ( $hero_photo ) : ?>
-			<img src="<?php echo esc_url( is_array( $hero_photo ) ? $hero_photo['url'] : $hero_photo ); ?>"
-			     alt="<?php echo esc_attr( $hero_name ); ?>"
-			     class="hero-photo-img">
-		<?php elseif ( file_exists( get_template_directory() . '/assets/src/img/hero-photo.jpg' ) ) : ?>
-			<img src="<?php echo esc_url( $hero_photo_local ); ?>"
-			     alt="<?php echo esc_attr( $hero_name ); ?>"
-			     class="hero-photo-img">
-		<?php else : ?>
-			<!-- Placeholder avatar -->
-			<div class="hero-photo-placeholder">
-				<svg viewBox="0 0 24 24" fill="currentColor" style="width:96px;height:96px;color:#475569;">
-					<path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-				</svg>
-			</div>
-		<?php endif; ?>
-	</div>
-
 	<!-- Main Content (Right Side on Desktop) -->
 	<main class="main-content lg:flex-1 px-6 py-24">
 
@@ -174,56 +151,37 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 			</p>
 		</div>
 
-		<!-- Sections wrapper: hidden until after hero transition (desktop only) -->
-		<div class="main-sections-wrapper">
+		<!-- About Section -->
+		<section id="about" class="section about-section mb-32 scroll-mt-24">
+			<div class="section-header mb-8 lg:hidden">
+				<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">About</h2>
+			</div>
+			<?php get_template_part( 'template-parts/portfolio-v2/about-me' ); ?>
+		</section>
 
-			<!-- About Section -->
-			<section id="about" class="section about-section mb-32 scroll-mt-24">
-				<div class="section-header mb-8 lg:hidden">
-					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">About</h2>
-				</div>
-				<?php get_template_part( 'template-parts/portfolio-v2/about-me' ); ?>
-			</section>
+		<!-- Skills Section -->
+		<section id="skills" class="section skills-section mb-32 scroll-mt-24">
+			<div class="section-header mb-8 lg:hidden">
+				<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Skills</h2>
+			</div>
+			<?php get_template_part( 'template-parts/portfolio-v2/skills' ); ?>
+		</section>
 
-			<!-- Skills Section -->
-			<section id="skills" class="section skills-section mb-32 scroll-mt-24">
-				<div class="section-header mb-8 lg:hidden">
-					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Skills</h2>
-				</div>
-				<?php get_template_part( 'template-parts/portfolio-v2/skills' ); ?>
-			</section>
+		<!-- Experience Section -->
+		<section id="experience" class="section experience-section mb-32 scroll-mt-24">
+			<div class="section-header mb-8 lg:hidden">
+				<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Experience</h2>
+			</div>
+			<?php get_template_part( 'template-parts/portfolio-v2/experience' ); ?>
+		</section>
 
-			<!-- Experience Section -->
-			<section id="experience" class="section experience-section mb-32 scroll-mt-24">
-				<div class="section-header mb-8 lg:hidden">
-					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Experience</h2>
-				</div>
-				<?php get_template_part( 'template-parts/portfolio-v2/experience' ); ?>
-
-				<!-- View Full Resume -->
-				<?php if ( $resume_url ) : ?>
-					<div class="mt-12">
-						<a href="<?php echo esc_url( $resume_url ); ?>"
-						   target="_blank"
-						   class="inline-flex items-center gap-2 text-white font-semibold group">
-							<span class="border-b-2 border-slate-900">View Full Résumé</span>
-							<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-							</svg>
-						</a>
-					</div>
-				<?php endif; ?>
-			</section>
-
-			<!-- Projects Section -->
-			<section id="projects" class="section projects-section mb-32 scroll-mt-24">
-				<div class="section-header mb-8 lg:hidden">
-					<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Projects</h2>
-				</div>
-				<?php get_template_part( 'template-parts/portfolio-v2/projects' ); ?>
-			</section>
-
-		</div><!-- /.main-sections-wrapper -->
+		<!-- Projects Section -->
+		<section id="projects" class="section projects-section mb-32 scroll-mt-24">
+			<div class="section-header mb-8 lg:hidden">
+				<h2 class="text-sm font-bold text-white uppercase tracking-widest mb-8">Projects</h2>
+			</div>
+			<?php get_template_part( 'template-parts/portfolio-v2/projects' ); ?>
+		</section>
 
 		<!-- Footer Credits -->
 		<footer class="portfolio-footer mt-32 pt-16 border-t border-slate-200">
@@ -241,138 +199,22 @@ $hero_photo_local = get_template_directory_uri() . '/assets/src/img/hero-photo.j
 </div>
 
 <style>
-/* ============================================================
-   Hero Intro Feature — Desktop only (lg: 1024px+)
-   All states driven by body.is-scrolled
-   ============================================================ */
 @media (min-width: 1024px) {
-
-	/* Animated padding-top centres intro text vertically on load,
-	   then snaps to 6rem (96px) to align with main's py-24 */
-	.side-navigation {
-		padding-top: calc(50vh - 90px);
-		transition: padding-top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-	body.is-scrolled .side-navigation {
-		padding-top: 6rem; /* 96px — identical to py-24 on <main> */
-	}
-
-	/* WP admin bar pushes document flow down 32px but fixed elements
-	   stay at top:0. Compensate so both sides align. */
-	.admin-bar .side-navigation {
-		top: 32px;
-	}
-	.admin-bar .hero-photo-overlay {
-		top: 32px;
-		height: calc(100vh - 32px);
-	}
-
-	/* Nav + social links: hidden on load, fade in after scroll */
-	.sidebar-reveal {
-		opacity: 0;
-		transform: translateY(12px);
-		pointer-events: none;
-		transition: opacity 0.4s ease, transform 0.4s ease;
-	}
-	body.is-scrolled .sidebar-reveal {
-		opacity: 1;
-		transform: translateY(0);
-		pointer-events: auto;
-		transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s;
-	}
-
-	/* Social links pinned to bottom of flex column */
+	/* Pin social links to bottom of the flex sidebar */
 	.side-navigation .social-links {
 		margin-top: auto;
 	}
 
-	/* Photo overlay: right half, full-height, fades out after scroll */
-	.hero-photo-overlay {
-		display: flex;
-		position: fixed;
-		top: 0;
-		right: 0;
-		width: 50%;
-		height: 100vh;
-		align-items: center;
-		justify-content: center;
-		background-color: #0f172a; /* slate-900 */
-		z-index: 5;
-		transition: opacity 0.6s ease;
+	/* WP admin bar offset for sticky sidebar */
+	.admin-bar .side-navigation {
+		top: 32px;
+		height: calc(100vh - 32px);
 	}
-	body.is-scrolled .hero-photo-overlay {
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	/* Sections wrapper: invisible on load, fades in after scroll */
-	.main-sections-wrapper {
-		opacity: 0;
-		transition: opacity 0.5s ease;
-	}
-	body.is-scrolled .main-sections-wrapper {
-		opacity: 1;
-		transition: opacity 0.5s ease 0.25s;
-	}
-}
-
-/* Photo overlay hidden on mobile (aside is already hidden) */
-@media (max-width: 1023px) {
-	.hero-photo-overlay {
-		display: none;
-	}
-}
-
-/* Photo fills the overlay */
-.hero-photo-img {
-	width: 460px;
-	height: 460px;
-	object-fit: cover;
-	border-radius: 50%;
-	display: block;
-	box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 0 40px 8px rgba(255,255,255,0.08);
-}
-
-/* Placeholder circle */
-.hero-photo-placeholder {
-	width: 460px;
-	height: 460px;
-	border-radius: 50%;
-	background-color: #1e293b; /* slate-800 */
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 </style>
 
-<!-- Smooth Scroll Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-
-	// ── Hero intro: one-time transition on first scroll ──────────────────
-	const HERO_THRESHOLD = 80;
-	let heroExited = false;
-
-	function updateHeroState() {
-		if (!heroExited && window.scrollY > HERO_THRESHOLD) {
-			heroExited = true;
-			document.body.classList.add('is-scrolled');
-
-			// Snap back to top so About is the first thing seen
-			window.scrollTo(0, 0);
-
-			// Lock scroll for 2 s while transitions play
-			document.documentElement.style.overflow = 'hidden';
-			document.body.style.overflow = 'hidden';
-			setTimeout(function() {
-				document.documentElement.style.overflow = '';
-				document.body.style.overflow = '';
-			}, 2000);
-		}
-	}
-
-	updateHeroState();
-	window.addEventListener('scroll', updateHeroState, { passive: true });
 
 	// ── Smooth scroll for anchor links ───────────────────────────────────
 	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -380,10 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			e.preventDefault();
 			const target = document.querySelector(this.getAttribute('href'));
 			if (target) {
-				target.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
+				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 		});
 	});
@@ -394,15 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function changeLinkState() {
 		let index = sections.length;
-
-		while(--index && window.scrollY + 200 < sections[index].offsetTop) {}
+		while (--index && window.scrollY + 200 < sections[index].offsetTop) {}
 
 		navLinks.forEach((link) => {
 			link.classList.remove('active');
 			const indicator = link.querySelector('.nav-indicator');
 			const text = link.querySelector('.nav-text');
 			indicator.classList.remove('w-16', 'bg-slate-600');
-			indicator.classList.add('w-8', 'bg-slate-600');
+			indicator.classList.add('w-8', 'bg-slate-400');
 			text.classList.remove('text-white');
 			text.classList.add('text-slate-400');
 		});
@@ -411,8 +249,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			navLinks[index].classList.add('active');
 			const activeIndicator = navLinks[index].querySelector('.nav-indicator');
 			const activeText = navLinks[index].querySelector('.nav-text');
-			activeIndicator.classList.remove('w-8', 'bg-slate-600');
-			activeIndicator.classList.add('w-16', 'bg-slate-600');
+			activeIndicator.classList.remove('w-8', 'bg-slate-400');
+			activeIndicator.classList.add('w-16', 'bg-white');
 			activeText.classList.remove('text-slate-400');
 			activeText.classList.add('text-white');
 		}

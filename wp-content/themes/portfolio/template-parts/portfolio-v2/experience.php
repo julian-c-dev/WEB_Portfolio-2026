@@ -66,7 +66,7 @@ $experience_query = new WP_Query(
 					<div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" aria-hidden="true"></div>
 
 					<!-- Date range -->
-					<header class="z-10 mt-4 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
+					<header class="z-10 mt-5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
 					        aria-label="<?php echo esc_attr( $date_range ); ?>">
 						<?php echo esc_html( $date_range ); ?>
 					</header>
@@ -106,14 +106,19 @@ $experience_query = new WP_Query(
 						<!-- Skills -->
 						<?php if ( $skill_ids ) : ?>
 							<ul class="mt-2 flex flex-wrap" aria-label="<?php esc_attr_e( 'Technologies used', 'portfolio_2026' ); ?>">
-								<?php foreach ( $skill_ids as $skill_id ) :
+								<?php
+									$skill_abbreviations = array(
+										'WordPress Coding Standards (WPCS)' => 'WPCS',
+									);
+									foreach ( $skill_ids as $skill_id ) :
 									$skill_name    = get_the_title( $skill_id );
+									$skill_label   = $skill_abbreviations[ $skill_name ] ?? $skill_name;
 									$color_family  = portfolio_2026_skill_color_family( $skill_name );
 									$color_classes = portfolio_2026_skill_classes( $color_family, true );
 									?>
 									<li class="mr-1.5 mt-2">
 										<div class="flex items-center rounded-full px-3 py-1 text-xs font-medium leading-5 ring-1 ring-inset <?php echo esc_attr( $color_classes ); ?>">
-											<?php echo esc_html( $skill_name ); ?>
+											<?php echo esc_html( $skill_label ); ?>
 										</div>
 									</li>
 								<?php endforeach; ?>
@@ -140,3 +145,21 @@ $experience_query = new WP_Query(
 	<?php endif; ?>
 
 </ol>
+
+<?php
+$cv_url = get_field( 'resume_url', 'option' ) ?: get_template_directory_uri() . '/assets/dist/file/resume.pdf';
+?>
+<div class="mt-12">
+	<a href="<?php echo esc_url( $cv_url ); ?>"
+	   download
+	   target="_blank"
+	   rel="noopener noreferrer"
+	   class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+		<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+	</svg>
+	<span><?php esc_html_e( 'Download my full résumé', 'portfolio_2026' ); ?></span>
+	</a>
+</div>
+
+
