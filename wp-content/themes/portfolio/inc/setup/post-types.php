@@ -29,7 +29,7 @@ function portfolio_2026_register_post_types() {
 			),
 			'public'       => true,
 			'has_archive'  => false,
-			'show_in_rest' => true,
+			'show_in_rest' => false,
 			'menu_icon'    => 'dashicons-star-filled',
 			'supports'     => array( 'title', 'editor', 'thumbnail' ),
 			'rewrite'      => array( 'slug' => 'skills' ),
@@ -74,10 +74,10 @@ function portfolio_2026_register_post_types() {
 				'all_items'     => __( 'All Projects', 'portfolio_2026' ),
 			),
 			'public'       => true,
-			'has_archive'  => true,
-			'show_in_rest' => true,
+			'has_archive'  => false,
+			'show_in_rest' => false,
 			'menu_icon'    => 'dashicons-portfolio',
-			'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+			'supports'     => array( 'title', 'thumbnail' ),
 			'rewrite'      => array( 'slug' => 'projects' ),
 		)
 	);
@@ -118,11 +118,26 @@ add_action( 'init', 'portfolio_2026_register_taxonomies' );
 function portfolio_2026_create_default_skill_categories() {
 
 	$categories = array(
-		array( 'name' => 'Programming Languages', 'slug' => 'programming-languages' ),
-		array( 'name' => 'Frameworks & Libraries',  'slug' => 'frameworks-libraries' ),
-		array( 'name' => 'WordPress Development',   'slug' => 'wordpress-development' ),
-		array( 'name' => 'Code Quality',            'slug' => 'code-quality' ),
-		array( 'name' => 'Tooling',                 'slug' => 'tooling' ),
+		array(
+			'name' => 'Programming Languages',
+			'slug' => 'programming-languages',
+		),
+		array(
+			'name' => 'Frameworks & Libraries',
+			'slug' => 'frameworks-libraries',
+		),
+		array(
+			'name' => 'WordPress Development',
+			'slug' => 'wordpress-development',
+		),
+		array(
+			'name' => 'Code Quality',
+			'slug' => 'code-quality',
+		),
+		array(
+			'name' => 'Tooling',
+			'slug' => 'tooling',
+		),
 	);
 
 	foreach ( $categories as $cat ) {
@@ -132,5 +147,3 @@ function portfolio_2026_create_default_skill_categories() {
 	}
 }
 add_action( 'after_switch_theme', 'portfolio_2026_create_default_skill_categories' );
-
-

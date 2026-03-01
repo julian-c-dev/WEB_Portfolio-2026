@@ -63,7 +63,7 @@
 					foreach ( $tags as $tag ) :
 						?>
 						<a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>"
-						   class="px-3 py-1 text-sm bg-gray-100 rounded-full hover:bg-gray-200">
+							class="px-3 py-1 text-sm bg-gray-100 rounded-full hover:bg-gray-200">
 							<?php echo esc_html( $tag->name ); ?>
 						</a>
 					<?php endforeach; ?>

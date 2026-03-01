@@ -36,7 +36,7 @@ while ( have_posts() ) :
 
 				<!-- Back Button -->
 				<a href="/#portfolio-content"
-				   class="inline-flex items-center gap-2 text-white mb-8 hover:text-blue-400 transition-colors">
+					class="inline-flex items-center gap-2 text-white mb-8 hover:text-blue-400 transition-colors">
 					<?php echo wp_kses( portfolio_2026_svgs( 'arrow-left' ), portfolio_2026_allowed_svg_tags() ); ?>
 					Back to Portfolio
 				</a>
@@ -46,9 +46,9 @@ while ( have_posts() ) :
 					<div class="mb-4">
 						<span class="inline-block text-sm font-bold px-4 py-2 rounded-full shadow-lg
 							<?php
-							echo $project_status === 'Active' ? 'bg-green-500 text-white' : '';
-							echo $project_status === 'Completed' ? 'bg-blue-500 text-white' : '';
-							echo $project_status === 'In Progress' ? 'bg-yellow-500 text-white' : '';
+							echo 'Active' === $project_status ? 'bg-green-500 text-white' : '';
+							echo 'Completed' === $project_status ? 'bg-blue-500 text-white' : '';
+							echo 'In Progress' === $project_status ? 'bg-yellow-500 text-white' : '';
 							?>
 						">
 							<?php echo esc_html( $project_status ); ?>
@@ -82,18 +82,18 @@ while ( have_posts() ) :
 				<div class="flex flex-wrap gap-4">
 					<?php if ( $project_url ) : ?>
 						<a href="<?php echo esc_url( $project_url ); ?>"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all">
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all">
 							🌐 View Live Project
 						</a>
 					<?php endif; ?>
 
 					<?php if ( $github_url ) : ?>
 						<a href="<?php echo esc_url( $github_url ); ?>"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="inline-flex items-center gap-2 bg-gray-900 text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all">
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 bg-gray-900 text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all">
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
 							View on GitHub
 						</a>
@@ -161,11 +161,11 @@ while ( have_posts() ) :
 								<div class="grid md:grid-cols-2 gap-4">
 									<?php foreach ( $project_gallery as $image ) : ?>
 										<a href="<?php echo esc_url( $image['url'] ); ?>"
-										   data-lightbox="project-gallery"
-										   class="block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+											data-lightbox="project-gallery"
+											class="block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
 											<img src="<?php echo esc_url( $image['sizes']['large'] ); ?>"
-												 alt="<?php echo esc_attr( $image['alt'] ); ?>"
-												 class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+												alt="<?php echo esc_attr( $image['alt'] ); ?>"
+												class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
 										</a>
 									<?php endforeach; ?>
 								</div>
@@ -189,7 +189,7 @@ while ( have_posts() ) :
 							<h3 class="text-xl font-bold mb-4">Explore More Projects</h3>
 							<p class="mb-6 text-blue-100">Check out my other work and see what I've been building.</p>
 							<a href="/#portfolio-content"
-							   class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
+								class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
 								View All Projects
 							</a>
 						</div>

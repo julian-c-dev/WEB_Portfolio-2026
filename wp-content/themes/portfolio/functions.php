@@ -25,6 +25,7 @@ function portfolio_2026_include_files() {
 		'setup/enqueue.php',          // Scripts and styles.
 		'setup/acf.php',              // ACF related functions and blocks.
 		'setup/post-types.php',       // Custom Post Type related functions.
+		'setup/seo.php',              // SEO meta tags, Open Graph, JSON-LD.
 		'helpers/functions.php',      // Extra utility functions.
 		'helpers/svgs.php',           // SVG Icons class.
 		'admin/admin.php',            // Admin related functions.

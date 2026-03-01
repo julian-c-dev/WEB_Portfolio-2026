@@ -1,6 +1,6 @@
 <?php
 /**
- * Experience Section - Card List Style
+ * Experience Section - Card List Style.
  *
  * ACF Fields (group: Experience Card):
  *   - start_date   (date_picker, return_format: d/m/Y)
@@ -48,7 +48,7 @@ $experience_query = new WP_Query(
 			$company_name   = $link ? $link['title'] : '';
 			$company_url    = $link ? $link['url'] : '';
 			$company_target = ( $link && $link['target'] ) ? $link['target'] : '_self';
-			$is_external    = $company_target === '_blank';
+			$is_external    = '_blank' === $company_target;
 
 			$aria_label = $job_title;
 			if ( $company_name ) {
@@ -67,7 +67,7 @@ $experience_query = new WP_Query(
 
 					<!-- Date range -->
 					<header class="z-10 mt-5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
-					        aria-label="<?php echo esc_attr( $date_range ); ?>">
+							aria-label="<?php echo esc_attr( $date_range ); ?>">
 						<?php echo esc_html( $date_range ); ?>
 					</header>
 
@@ -77,10 +77,13 @@ $experience_query = new WP_Query(
 						<!-- Job Title & Company -->
 						<h3 class="leading-snug text-slate-400 transition-colors group-hover:text-white">
 							<a class="inline-flex items-baseline font-medium leading-tight text-slate-400 group-hover:text-white transition-colors group/link text-base"
-							   href="<?php echo esc_url( $company_url ?: get_permalink() ); ?>"
-							   target="<?php echo esc_attr( $company_target ); ?>"
-							   <?php if ( $is_external ) : ?>rel="noreferrer noopener"<?php endif; ?>
-							   aria-label="<?php echo esc_attr( $aria_label ); ?>">
+								href="<?php echo esc_url( $company_url ?: get_permalink() ); ?>"
+								target="<?php echo esc_attr( $company_target ); ?>"
+								<?php
+								if ( $is_external ) :
+									?>
+									rel="noreferrer noopener"<?php endif; ?>
+								aria-label="<?php echo esc_attr( $aria_label ); ?>">
 								<span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 								<span>
 									<?php echo esc_html( $job_title ); ?>
@@ -111,11 +114,11 @@ $experience_query = new WP_Query(
 										'WordPress Coding Standards (WPCS)' => 'WPCS',
 									);
 									foreach ( $skill_ids as $skill_id ) :
-									$skill_name    = get_the_title( $skill_id );
-									$skill_label   = $skill_abbreviations[ $skill_name ] ?? $skill_name;
-									$color_family  = portfolio_2026_skill_color_family( $skill_name );
-									$color_classes = portfolio_2026_skill_classes( $color_family, true );
-									?>
+										$skill_name    = get_the_title( $skill_id );
+										$skill_label   = $skill_abbreviations[ $skill_name ] ?? $skill_name;
+										$color_family  = portfolio_2026_skill_color_family( $skill_name );
+										$color_classes = portfolio_2026_skill_classes( $color_family, true );
+										?>
 									<li class="mr-1.5 mt-2">
 										<div class="flex items-center rounded-full px-3 py-1 text-xs font-medium leading-5 ring-1 ring-inset <?php echo esc_attr( $color_classes ); ?>">
 											<?php echo esc_html( $skill_label ); ?>
@@ -137,7 +140,7 @@ $experience_query = new WP_Query(
 		<li class="text-slate-400">
 			<p><?php esc_html_e( 'No experience added yet.', 'portfolio_2026' ); ?>
 				<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=experience' ) ); ?>"
-				   class="text-white font-semibold">
+					class="text-white font-semibold">
 					<?php esc_html_e( 'Add your first experience →', 'portfolio_2026' ); ?>
 				</a>
 			</p>
@@ -147,19 +150,18 @@ $experience_query = new WP_Query(
 </ol>
 
 <?php
-$cv_url = get_field( 'resume_url', 'option' ) ?: get_template_directory_uri() . '/assets/dist/file/resume.pdf';
-?>
-<div class="mt-12">
+$settings = get_field( 'settings', 'option' );
+$cv_url   = $settings['resume']['url'] ?? '';
+if ( $cv_url ) :
+	?>
+<div class="mt-18">
 	<a href="<?php echo esc_url( $cv_url ); ?>"
-	   download
-	   target="_blank"
-	   rel="noopener noreferrer"
-	   class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-		<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-	</svg>
-	<span><?php esc_html_e( 'Download my full résumé', 'portfolio_2026' ); ?></span>
+		download
+		target="_blank"
+		rel="noopener noreferrer"
+		class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+		<?php echo portfolio_2026_svgs( 'cv', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<span><?php esc_html_e( 'Download my full résumé', 'portfolio_2026' ); ?></span>
 	</a>
 </div>
-
-
+<?php endif; ?>

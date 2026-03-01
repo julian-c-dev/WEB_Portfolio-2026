@@ -1,6 +1,14 @@
 <?php
 /**
- * Projects Section - Minimalist Card Style
+ * Projects Section - Card List Style.
+ *
+ * ACF Fields (group: Project Card):
+ *   - title        (text)                          — project title
+ *   - link         (link, return_format: array)    — { url, title, target }
+ *   - description  (textarea)
+ *   - skills       (relationship → skill CPT, return_format: id)
+ *
+ * Also uses: featured image (thumbnail) from the post.
  *
  * @package portfolio_2026
  */
@@ -9,13 +17,13 @@ $projects_query = new WP_Query(
 	array(
 		'post_type'      => 'project',
 		'posts_per_page' => -1,
-		'orderby'        => 'date',
-		'order'          => 'DESC',
+		'orderby'        => 'menu_order date',
+		'order'          => 'ASC',
 	)
 );
 ?>
 
-<div class="projects-list group/list space-y-16">
+<ol class="projects-list group/list space-y-12">
 
 	<?php if ( $projects_query->have_posts() ) : ?>
 
@@ -23,94 +31,108 @@ $projects_query = new WP_Query(
 		while ( $projects_query->have_posts() ) :
 			$projects_query->the_post();
 
-			$project_url       = get_field( 'project_url' );
-			$github_url        = get_field( 'github_url' );
-			$technologies_used = get_field( 'technologies_used' );
-			$featured_image    = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+			$acf_title     = get_field( 'title' );
+			$project_title = $acf_title ? $acf_title : get_the_title();
+			$thumbnail_id  = get_post_thumbnail_id();
+			$project_link  = get_field( 'link' );
+			$description   = get_field( 'description' );
+			$skill_ids     = get_field( 'skills' );
+
 			?>
 
-			<div class="project-item group relative grid items-start gap-4 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+			<li class="mb-12">
+				<div class="group relative grid items-start pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
 
-				<!-- Image (Left on Desktop) -->
-				<div class="sm:col-span-3 order-2 sm:order-1">
-					<?php if ( $featured_image ) : ?>
-						<div class="rounded border-2 border-slate-200/60 bg-slate-50 transition group-hover:border-slate-300/60 sm:order-1 sm:col-span-3 sm:translate-y-1">
-							<img src="<?php echo esc_url( $featured_image ); ?>"
-								 alt="<?php the_title(); ?>"
-								 class="rounded object-cover w-full h-auto"
-								 loading="lazy">
+					<!-- Hover overlay -->
+					<div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" aria-hidden="true"></div>
+
+					<!-- Featured image (left column) -->
+					<div class="z-10 sm:col-span-2 self-start mt-4">
+						<?php if ( $thumbnail_id ) : ?>
+						<div class="rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 overflow-hidden aspect-video">
+							<?php
+							echo wp_get_attachment_image(
+								$thumbnail_id,
+								'medium',
+								false,
+								array(
+									'class'   => 'w-full h-full object-cover rounded',
+									'loading' => 'lazy',
+									'alt'     => esc_attr( $project_title ),
+								)
+							); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+							?>
 						</div>
-					<?php endif; ?>
-				</div>
+						<?php endif; ?>
+					</div>
 
-				<!-- Content (Right on Desktop) -->
-				<div class="sm:col-span-5 order-1 sm:order-2">
+					<!-- Content -->
+					<div class="z-10 sm:col-span-6 mb-4">
 
-					<!-- Project Title -->
-					<h3 class="font-medium leading-snug text-white">
-						<div>
-							<a href="<?php the_permalink(); ?>"
-							   class="inline-flex items-baseline text-base font-semibold leading-tight text-white group/link">
+						<!-- Title -->
+						<h3 class="leading-snug text-slate-400 transition-colors group-hover:text-white">
+							<?php if ( $project_link ) : ?>
+							<a class="inline-flex items-baseline font-medium leading-tight text-slate-400 group-hover:text-white transition-colors group/link text-base"
+								href="<?php echo esc_url( $project_link ); ?>"
+								target="_blank"
+								rel="noreferrer noopener">
 								<span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 								<span>
-									<?php the_title(); ?>
-									<?php echo portfolio_2026_svgs( "arrow-external", "inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php echo esc_html( $project_title ); ?>
+									<?php echo portfolio_2026_svgs( 'arrow-external', 'inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								</span>
 							</a>
-						</div>
-					</h3>
-
-					<!-- Project Description -->
-					<p class="mt-2 text-sm leading-normal text-slate-400">
-						<?php echo esc_html( get_the_excerpt() ); ?>
-					</p>
-
-					<!-- External Links -->
-					<?php if ( $project_url || $github_url ) : ?>
-						<div class="mt-3 flex gap-4 text-xs text-slate-400">
-							<?php if ( $project_url ) : ?>
-								<a href="<?php echo esc_url( $project_url ); ?>"
-								   target="_blank"
-								   rel="noopener noreferrer"
-								   class="inline-flex items-center gap-1 hover:text-white transition-colors">
-									<?php echo portfolio_2026_svgs( 'external-link', 'w-3 h-3' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-									View Project
-								</a>
+							<?php else : ?>
+							<span class="font-medium text-base"><?php echo esc_html( $project_title ); ?></span>
 							<?php endif; ?>
-							<?php if ( $github_url ) : ?>
-								<a href="<?php echo esc_url( $github_url ); ?>"
-								   target="_blank"
-								   rel="noopener noreferrer"
-								   class="inline-flex items-center gap-1 hover:text-white transition-colors">
-									<?php echo portfolio_2026_svgs( 'github', 'w-3 h-3' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-									GitHub
-								</a>
-							<?php endif; ?>
-						</div>
-					<?php endif; ?>
+						</h3>
 
-					<!-- Technologies -->
-					<?php if ( $technologies_used ) : ?>
-						<ul class="mt-3 flex flex-wrap gap-2">
-							<?php foreach ( $technologies_used as $tech ) : ?>
-								<li class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-900">
-									<?php echo esc_html( $tech ); ?>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
+						<!-- Description -->
+						<?php if ( $description ) : ?>
+							<p class="mt-2 text-sm leading-normal text-slate-400">
+								<?php echo esc_html( $description ); ?>
+							</p>
+						<?php endif; ?>
+
+						<!-- Skills -->
+						<?php if ( $skill_ids ) : ?>
+							<ul class="mt-2 flex flex-wrap" aria-label="<?php esc_attr_e( 'Technologies used', 'portfolio_2026' ); ?>">
+								<?php
+								$skill_abbreviations = array(
+									'WordPress Coding Standards (WPCS)' => 'WPCS',
+								);
+								foreach ( $skill_ids as $skill_id ) :
+									$skill_name    = get_the_title( $skill_id );
+									$skill_label   = $skill_abbreviations[ $skill_name ] ?? $skill_name;
+									$color_family  = portfolio_2026_skill_color_family( $skill_name );
+									$color_classes = portfolio_2026_skill_classes( $color_family, true );
+									?>
+									<li class="mr-1.5 mt-2">
+										<div class="flex items-center rounded-full px-3 py-1 text-xs font-medium leading-5 ring-1 ring-inset <?php echo esc_attr( $color_classes ); ?>">
+											<?php echo esc_html( $skill_label ); ?>
+										</div>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+
+					</div>
 
 				</div>
-
-			</div>
+			</li>
 
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 
 	<?php else : ?>
-		<div class="text-slate-400">
-			<p>No projects added yet. <a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=project' ) ); ?>" class="text-white font-semibold">Add your first project →</a></p>
-		</div>
+		<li class="text-slate-400">
+			<p><?php esc_html_e( 'No projects added yet.', 'portfolio_2026' ); ?>
+				<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=project' ) ); ?>"
+					class="text-white font-semibold">
+					<?php esc_html_e( 'Add your first project →', 'portfolio_2026' ); ?>
+				</a>
+			</p>
+		</li>
 	<?php endif; ?>
 
-</div>
+</ol>

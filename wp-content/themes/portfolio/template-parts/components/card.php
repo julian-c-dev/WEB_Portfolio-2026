@@ -39,13 +39,13 @@ $category  = isset( $args['category'] ) ? $args['category'] : '';
 			<?php if ( $link ) : ?>
 				<a href="<?php echo esc_url( $link ); ?>" class="block w-full h-full">
 					<img src="<?php echo esc_url( $image_url ); ?>"
-						 alt="<?php echo esc_attr( $title ); ?>"
-						 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+						alt="<?php echo esc_attr( $title ); ?>"
+						class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
 				</a>
 			<?php else : ?>
 				<img src="<?php echo esc_url( $image_url ); ?>"
-					 alt="<?php echo esc_attr( $title ); ?>"
-					 class="w-full h-full object-cover">
+					alt="<?php echo esc_attr( $title ); ?>"
+					class="w-full h-full object-cover">
 			<?php endif; ?>
 
 			<?php if ( $category ) : ?>
@@ -84,7 +84,7 @@ $category  = isset( $args['category'] ) ? $args['category'] : '';
 
 		<?php if ( $link ) : ?>
 			<a href="<?php echo esc_url( $link ); ?>"
-			   class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+				class="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
 				<?php echo esc_html( $link_text ); ?>
 				<?php echo wp_kses( empty_svgs( 'arrow-right' ), empty_allowed_svg_tags() ); ?>
 			</a>

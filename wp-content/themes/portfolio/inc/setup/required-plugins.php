@@ -20,7 +20,7 @@ function portfolio_2026_register_required_plugins() {
 	 */
 	$plugins = array(
 
-		// ACF Pro desde archivo ZIP local.
+		// ACF Pro from local ZIP file.
 		array(
 			'name'     => 'Advanced Custom Fields PRO',
 			'slug'     => 'advanced-custom-fields-pro',
@@ -29,7 +29,7 @@ function portfolio_2026_register_required_plugins() {
 			'version'  => '',
 		),
 
-		// Ejemplos de plugins desde el repositorio de WordPress.org (descomenta para usar):
+		// Example plugins from the WordPress.org repository (uncomment to use).
 		/*
 		array(
 			'name'     => 'Contact Form 7',

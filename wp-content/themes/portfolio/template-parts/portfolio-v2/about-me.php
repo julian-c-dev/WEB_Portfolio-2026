@@ -1,11 +1,12 @@
 <?php
 /**
- * About Me Section - Minimalist Style
+ * About Me Section - Minimalist Style.
  *
  * @package portfolio_2026
  */
 
-$about_text = get_field( 'about', 'option' );
+$settings   = get_field( 'settings', 'option' );
+$about_text = $settings['about'] ?? '';
 ?>
 
 <div class="about-content">

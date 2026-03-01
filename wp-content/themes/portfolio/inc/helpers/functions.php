@@ -84,24 +84,34 @@ function portfolio_2026_skill_color_family( $skill_name ) {
 
 	$js_keywords = array( 'javascript', 'jquery', 'react', 'next', 'eslint', 'webpack', 'gulp', 'expo', 'astro', 'node', 'typescript' );
 	foreach ( $js_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'amber';
+		if ( false !== strpos( $name, $kw ) ) {
+			return 'amber';
+		}
 	}
 
-	if ( strpos( $name, 'html' ) !== false ) return 'orange';
+	if ( false !== strpos( $name, 'html' ) ) {
+		return 'orange';
+	}
 
 	$css_keywords = array( 'css', 'sass', 'scss', 'tailwind', 'bootstrap' );
 	foreach ( $css_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'sky';
+		if ( false !== strpos( $name, $kw ) ) {
+			return 'sky';
+		}
 	}
 
-	$php_keywords = array( 'php', 'wordpress', 'gutenberg', 'woocommerce', 'acf', 'ajax', 'composer', 'wpcs', 'custom theme', 'custom post', 'taxonom', 'coding standard', 'sql', 'elementor', 'custom plugin' );
+	$php_keywords = array( 'php', 'laravel', 'wordpress', 'gutenberg', 'woocommerce', 'acf', 'ajax', 'composer', 'wpcs', 'custom theme', 'custom post', 'taxonom', 'coding standard', 'sql', 'elementor', 'custom plugin' );
 	foreach ( $php_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'violet';
+		if ( false !== strpos( $name, $kw ) ) {
+			return 'violet';
+		}
 	}
 
 	$git_keywords = array( 'git', 'husky', 'hook' );
 	foreach ( $git_keywords as $kw ) {
-		if ( strpos( $name, $kw ) !== false ) return 'teal';
+		if ( false !== strpos( $name, $kw ) ) {
+			return 'teal';
+		}
 	}
 
 	return 'slate';
