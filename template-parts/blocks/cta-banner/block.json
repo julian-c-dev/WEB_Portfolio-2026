@@ -1,0 +1,26 @@
+{
+    "name": "cta-banner",
+    "title": "Block: CTA Banner",
+    "description": "A block that displays jobs offers from third-party platforms organized into tabs.",
+    "category": "layout",
+    "icon": "align-left",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "cta-banner.php"
+    },
+    "supports": {
+        "align": false,
+        "mode": false,
+        "anchor": true
+    },
+
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+            "preview_image_help": true
+            }
+        }
+    }
+
+}
