@@ -6,7 +6,6 @@
 /index.php
 /license.txt
 /readme.html
-git reset HEAD~1
 
 # Sensitive config
 wp-config.php
