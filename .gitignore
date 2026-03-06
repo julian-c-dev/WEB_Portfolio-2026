@@ -6,6 +6,7 @@
 /index.php
 /license.txt
 /readme.html
+git reset HEAD~1
 
 # Sensitive config
 wp-config.php
@@ -28,6 +29,7 @@ wp-config-sample.php
 
 # Other themes (only track ours)
 /wp-content/themes/twenty*/
+/wp-content/ai1wm-backups/
 
 # Node
 node_modules/
